@@ -2,7 +2,7 @@
 
 Tempo de leitura: 20 minutos. Ajuda saber um pouco de programação, mas o texto explica cada passo.
 
-O site inteiro está em **um único arquivo**, `index.html`. Ele tem três partes:
+O site inteiro está em um único arquivo, `index.html`. Ele tem três partes:
 
 | Parte | O que contém | Tecnologia |
 |---|---|---|
@@ -12,21 +12,21 @@ O site inteiro está em **um único arquivo**, `index.html`. Ele tem três parte
 
 Não há bibliotecas, servidor nem banco de dados. Tudo roda no navegador. Quando você abre o arquivo, o navegador executa o JavaScript.
 
-> **Dica:** com o **Modo nerd** ligado, o passo 3 mostra o código real da função principal, direto na página.
+> Dica: com o Modo nerd ligado, o passo 3 mostra o código real da função principal, direto na página.
 
 ## 2.1 O mapa do `<script>`
 
 O JavaScript está organizado em blocos, separados por comentários do tipo `/* ===== NOME ===== */`. Na ordem:
 
-1. **DADOS**: as manchetes (`TEMAS`), as regras (`CFG`) e os perfis de usuário.
-2. **MOTOR**: o sistema que sorteia o feed e mede a diversidade.
-3. **ESTADO DO JOGO**: o que o site "lembra" enquanto você joga.
-4. **COMPONENTES VISUAIS**: barras e blocos coloridos.
-5. **NAVEGAÇÃO**: o fluxo dos 5 passos.
-6. **PASSO 1 a 4**: a lógica de cada tela.
-7. **ROSCA, MODO NERD, LABORATÓRIO**: extras visuais e de exploração.
-8. **TEMA e COMPARTILHAR**: botões utilitários.
-9. **INÍCIO**: a última linha, que liga tudo.
+1. DADOS: as manchetes (`TEMAS`), as regras (`CFG`) e os perfis de usuário.
+2. MOTOR: o sistema que sorteia o feed e mede a diversidade.
+3. ESTADO DO JOGO: o que o site "lembra" enquanto você joga.
+4. COMPONENTES VISUAIS: barras e blocos coloridos.
+5. NAVEGAÇÃO: o fluxo dos 5 passos.
+6. PASSO 1 a 4: a lógica de cada tela.
+7. ROSCA, MODO NERD, LABORATÓRIO: extras visuais e de exploração.
+8. TEMA e COMPARTILHAR: botões utilitários.
+9. INÍCIO: a última linha, que liga tudo.
 
 ## 2.2 Os dados
 
@@ -38,7 +38,7 @@ const TEMAS = [
 ];
 ```
 
-Cada tema tem um nome, um **ícone** (para quem não distingue cores), uma **cor** e uma lista de manchetes. Todas as manchetes são **fictícias**.
+Cada tema tem um nome, um ícone (para quem não distingue cores), uma cor e uma lista de manchetes. Todas as manchetes são fictícias.
 
 As regras ficam em um objeto de configuração:
 
@@ -53,9 +53,9 @@ const CFG = {
 
 Três números descrevem qualquer regra:
 
-- **gama (γ):** quanto o histórico pesa. Com γ = 0 o histórico é ignorado; com γ = 1 a chance é proporcional às curtidas; com γ ≥ 2 quem lidera tende a levar quase tudo.
-- **eps (ε):** a fração do feed sorteada entre todos os temas, sem olhar o histórico (exploração).
-- **teto:** a fração máxima do feed que um tema pode ocupar.
+- gama (γ): quanto o histórico pesa. Com γ = 0 o histórico é ignorado; com γ = 1 a chance é proporcional às curtidas; com γ ≥ 2 quem lidera tende a levar quase tudo.
+- eps (ε): a fração do feed sorteada entre todos os temas, sem olhar o histórico (exploração).
+- teto: a fração máxima do feed que um tema pode ocupar.
 
 ## 2.3 O motor: onde a "bolha" nasce
 
@@ -97,12 +97,12 @@ function montaTemas(cliques, modo, n, rnd){
 
 Passo a passo:
 
-1. `pesos`: transforma a pontuação de cada tema em **peso**, elevando ao expoente γ. É aqui que mora o *rich-get-richer*: com γ = 2, dobrar a pontuação **quadruplica** o peso.
+1. `pesos`: transforma a pontuação de cada tema em peso, elevando ao expoente γ. É aqui que mora o *rich-get-richer*: com γ = 2, dobrar a pontuação quadruplica o peso.
 2. Para cada vaga do feed, `sorteia` escolhe um tema pela roleta.
-3. Com probabilidade ε, o tema é sorteado **sem olhar o histórico** (exploração, regra B).
-4. Se o tema já atingiu o **teto**, a vaga é redistribuída entre os temas que ainda têm espaço (regra C).
+3. Com probabilidade ε, o tema é sorteado sem olhar o histórico (exploração, regra B).
+4. Se o tema já atingiu o teto, a vaga é redistribuída entre os temas que ainda têm espaço (regra C).
 
-`cliques` começa com 1 para todos os temas (todo mundo parte igual). Cada curtida soma à pontuação do tema. É o **feedback loop**: a pontuação alimenta o peso, o peso decide o feed, o feed gera novas curtidas, que mudam a pontuação.
+`cliques` começa com 1 para todos os temas (todo mundo parte igual). Cada curtida soma à pontuação do tema. É o feedback loop: a pontuação alimenta o peso, o peso decide o feed, o feed gera novas curtidas, que mudam a pontuação.
 
 ### `entropia`: mede a diversidade
 
@@ -114,10 +114,10 @@ function entropia(cont){
 }
 ```
 
-A **entropia de Shannon** mede o quanto algo está "espalhado". Normalizada pelo logaritmo do número de temas, ela vale:
+A entropia de Shannon mede o quanto algo está "espalhado". Normalizada pelo logaritmo do número de temas, ela vale:
 
-- **1,0** quando todos os temas aparecem igualmente;
-- **0,0** quando só um tema aparece.
+- 1,0 quando todos os temas aparecem igualmente;
+- 0,0 quando só um tema aparece.
 
 Exemplo com 5 temas e 6 posts: um feed `[2,1,1,1,1]` tem entropia próxima de 0,97; um feed `[6,0,0,0,0]` tem 0.
 
@@ -127,7 +127,7 @@ Exemplo com 5 temas e 6 posts: um feed `[2,1,1,1,1]` tem entropia próxima de 0,
 function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
 ```
 
-`Math.random()` dá resultados diferentes a cada vez. Para **comparar regras** de forma justa, as simulações usam `mulberry32(semente)`: com a mesma semente, a sequência de números aleatórios se repete. Por isso o passo 4 sempre dá os mesmos resultados, e os desafios do laboratório são reproduzíveis.
+`Math.random()` dá resultados diferentes a cada vez. Para comparar regras de forma justa, as simulações usam `mulberry32(semente)`: com a mesma semente, a sequência de números aleatórios se repete. Por isso o passo 4 sempre dá os mesmos resultados, e os desafios do laboratório são reproduzíveis.
 
 ## 2.5 A simulação
 
@@ -146,7 +146,7 @@ function simula(p, modo, rodadas, n, seed){
 }
 ```
 
-Um **usuário simulado** é só uma lista de probabilidades `p[t]`: a chance de clicar em cada tema. Em cada rodada:
+Um usuário simulado é só uma lista de probabilidades `p[t]`: a chance de clicar em cada tema. Em cada rodada:
 
 1. o sistema monta o feed (`montaTemas`);
 2. mede-se a diversidade (`entropia`);
@@ -174,9 +174,9 @@ st = {
 };
 ```
 
-`st` é o único objeto que guarda o que aconteceu. Tudo o que você vê na tela é desenhado **a partir de `st`**. Essa regra simples (um estado, várias telas) evita muitos erros.
+`st` é o único objeto que guarda o que aconteceu. Tudo o que você vê na tela é desenhado a partir de `st`. Essa regra simples (um estado, várias telas) evita muitos erros.
 
-Por que `cliq` e `curt` são separados? `cliq` é a pontuação que o **sistema** usa (começa em 1); `curt` é a contagem das **suas curtidas** (começa em 0). O gráfico do passo 3 usa `curt` e `vistos`.
+Por que `cliq` e `curt` são separados? `cliq` é a pontuação que o sistema usa (começa em 1); `curt` é a contagem das suas curtidas (começa em 0). O gráfico do passo 3 usa `curt` e `vistos`.
 
 ## 2.7 A interface
 
@@ -187,7 +187,7 @@ Por que `cliq` e `curt` são separados? `cliq` é a pontuação que o **sistema*
 - `rodaReplay()` e `rodaDoisPorDois()` montam o passo 4.
 - A rosca e os gráficos usam o elemento `<canvas>` e a API de desenho 2D do navegador.
 
-**Acessibilidade:** os cartões são navegáveis por teclado (`Enter` e `Espaço`), usam `aria-pressed`, o tema respeita `prefers-color-scheme` e as animações respeitam `prefers-reduced-motion`. Cada tema tem cor **e** ícone.
+Acessibilidade: os cartões são navegáveis por teclado (`Enter` e `Espaço`), usam `aria-pressed`, o tema respeita `prefers-color-scheme` e as animações respeitam `prefers-reduced-motion`. Cada tema tem cor e ícone.
 
 ## 2.8 Como o modo nerd funciona
 

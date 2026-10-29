@@ -4,9 +4,9 @@
 
 [**▶ Experimentar agora**](https://rtbuhler.github.io/seja-o-algoritmo/) · funciona no celular, no projetor e offline · sem cadastro, sem coleta de dados
 
-Uma demonstração interativa e de código aberto sobre algoritmos de recomendação, bolhas informacionais e a pergunta **"quem escolhe o que chega até nós?"**. Você curte manchetes (fictícias), o sistema aprende com as suas curtidas e você acompanha o feed se estreitar. Depois, troca a regra do sistema e compara os resultados.
+Uma demonstração interativa e de código aberto sobre algoritmos de recomendação, bolhas informacionais e a pergunta "quem escolhe o que chega até nós?". Você curte manchetes (fictícias), o sistema aprende com as suas curtidas e você acompanha o feed se estreitar. Depois, troca a regra do sistema e compara os resultados.
 
-Feita para aulas, rodas de conversa e eventos de ciência e tecnologia. Se você é estudante do Ensino Médio e curte mexer no código, ligue o **Modo nerd** dentro do site.
+Feita para aulas, rodas de conversa e eventos de ciência e tecnologia. Se você é estudante do Ensino Médio e curte mexer no código, ligue o Modo nerd dentro do site.
 
 ## O que você vai ver
 
@@ -18,9 +18,9 @@ Feita para aulas, rodas de conversa e eventos de ciência e tecnologia. Se você
 | 4. Regras | Mesmo perfil de curtidas, três regras diferentes. Depois, o experimento 2×2: quem escolhe, o sistema ou o usuário? |
 | 5. Pensar | Perguntas para discutir, limites do modelo e glossário. |
 
-**Modo plateia:** para quem não tem celular, o projetor vira a tela de todos. Conte as mãos levantadas e registre os votos com + e −.
+Modo plateia: para quem não tem celular, o projetor vira a tela de todos. Conte as mãos levantadas e registre os votos com + e −.
 
-**Modo nerd:** mostra o sistema por dentro (pontuações, pesos, probabilidades), deixa você mudar os parâmetros (γ, ε, teto), traz o código real da função principal, um laboratório com desafios e exporta seus dados em CSV.
+Modo nerd: mostra o sistema por dentro (pontuações, pesos, probabilidades), deixa você mudar os parâmetros (γ, ε, teto), traz o código real da função principal, um laboratório com desafios e exporta seus dados em CSV.
 
 ## Comece em 1 minuto
 
@@ -35,10 +35,10 @@ Feita para aulas, rodas de conversa e eventos de ciência e tecnologia. Se você
 
 A documentação foi escrita para ser lida em ordem, do mais simples ao mais técnico:
 
-1. [**Conceitos**](docs/01-conceitos.md): métrica, feedback loop, bolha × câmara de eco, o que a pesquisa diz. Não precisa programar.
-2. [**Como o código funciona**](docs/02-como-o-codigo-funciona.md): o arquivo, as funções, a simulação, passo a passo.
-3. [**Experimentos e desafios**](docs/03-experimentos-e-desafios.md): perguntas para testar, no site ou em Python, e desafios de código em três níveis.
-4. [**Para ir além**](docs/04-para-ir-alem.md): limites do modelo, palavras-chave para pesquisar e uma trilha de estudo.
+1. [Conceitos](docs/01-conceitos.md): métrica, feedback loop, bolha × câmara de eco, o que a pesquisa diz. Não precisa programar.
+2. [Como o código funciona](docs/02-como-o-codigo-funciona.md): o arquivo, as funções, a simulação, passo a passo.
+3. [Experimentos e desafios](docs/03-experimentos-e-desafios.md): perguntas para testar, no site ou em Python, e desafios de código em três níveis.
+4. [Para ir além](docs/04-para-ir-alem.md): limites do modelo, palavras-chave para pesquisar e uma trilha de estudo.
 
 ## Versão em Python
 
@@ -63,13 +63,13 @@ LICENSE                           licença MIT do código (veja a nota sobre a m
 
 ## Limites
 
-É um **modelo de brinquedo** para ilustrar um mecanismo. Não mede nenhuma plataforma real. Os gostos do usuário são fixos, os criadores de conteúdo não reagem, e a pesquisa real sobre bolhas é mais complexa e **disputada**. O site e a documentação dizem isso com todas as letras.
+É um modelo de brinquedo para ilustrar um mecanismo. Não mede nenhuma plataforma real. Os gostos do usuário são fixos, os criadores de conteúdo não reagem, e a pesquisa real sobre bolhas é mais complexa e disputada. O site e a documentação dizem isso com todas as letras.
 
 ## Sobre o projeto
 
 A atividade se apoia no artigo de iniciação científica *Economia da desinformação e sistemas algorítmicos* (Angelo e Nogueira, RICEM, Revista de Iniciação Científica do Ensino Médio, 2026), que usa o modelo de três fases (criação, disseminação e recirculação) de Jesus-Silva (2026).
 
-Desenvolvido por **Rudolf Theoderich Buhler**, coordenador dos cursos de Ciência da Computação e de Sistemas de Informação do **Instituto Mauá de Tecnologia**, com o apoio do Claude (Anthropic).
+Desenvolvido por Rudolf Theoderich Buhler, coordenador dos cursos de Ciência da Computação e de Sistemas de Informação do Instituto Mauá de Tecnologia, com o apoio do Claude (Anthropic).
 
 Quer aprender a construir sistemas como este e a decidir o que eles devem fazer? Conheça [Ciência da Computação](https://www.maua.br/graduacao/ciencia-computacao?utm_source=bolhas-demo&utm_medium=github&utm_campaign=vestibular) e [Sistemas de Informação](https://www.maua.br/graduacao/sistemas-informacao?utm_source=bolhas-demo&utm_medium=github&utm_campaign=vestibular) na Mauá. Datas, valores e inscrição ficam na página do [vestibular](https://www.maua.br/vestibular?utm_source=bolhas-demo&utm_medium=github&utm_campaign=vestibular).
 
@@ -79,6 +79,6 @@ Ideias, dúvidas e correções são bem-vindas: abra uma *issue* ou um *pull req
 
 ## Licença e marca
 
-O **código e a documentação** estão sob a licença [MIT](LICENSE): você pode usar, copiar, modificar e redistribuir, mantendo o aviso de autoria.
+O código e a documentação estão sob a licença [MIT](LICENSE): você pode usar, copiar, modificar e redistribuir, mantendo o aviso de autoria.
 
-O **nome e o logotipo do Instituto Mauá de Tecnologia** são marcas do Instituto e **não** estão cobertos pela licença MIT. Ao reutilizar o projeto, troque a identidade visual pela sua.
+O nome e o logotipo do Instituto Mauá de Tecnologia são marcas do Instituto e não estão cobertos pela licença MIT. Ao reutilizar o projeto, troque a identidade visual pela sua.

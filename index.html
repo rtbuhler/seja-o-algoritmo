@@ -158,7 +158,7 @@ table.mini th,table.mini td{padding:4px 6px;font-size:.82rem}
   <section class="step" id="s1" aria-labelledby="h1s">
     <h2 id="h1s">Passo 1 · Faça uma previsão</h2>
     <div class="card">
-      <p><strong>A regra do jogo.</strong> Você vai ver 6 manchetes por rodada, de 5 temas. Toque nas que você <em>clicaria de verdade</em>. O sistema que monta o seu feed faz uma única coisa: <strong>conta curtidas</strong>. Quanto mais curtidas um tema tem, maior a chance de ele aparecer na rodada seguinte (a chance cresce com as curtidas ao quadrado).</p>
+      <p><strong>A regra do jogo.</strong> Você vai ver 6 manchetes por rodada, de 5 temas. Toque nas que você <em>clicaria de verdade</em>. O sistema que monta o seu feed faz uma única coisa: conta curtidas. Quanto mais curtidas um tema tem, maior a chance de ele aparecer na rodada seguinte (a chance cresce com as curtidas ao quadrado).</p>
       <p class="muted">Pense em um garçom que só traz o prato do pedido anterior, e cada vez mais vezes.</p>
     </div>
     <h3>Se você curtir quase sempre o mesmo tema por 8 rodadas, o seu feed vai...</h3>
@@ -244,7 +244,7 @@ table.mini th,table.mini td{padding:4px 6px;font-size:.82rem}
   <section class="step" id="s4" aria-labelledby="h4s" hidden>
     <h2 id="h4s">Passo 4 · E se a regra fosse outra?</h2>
     <div class="card">
-      <p>O sistema não "quer" criar bolhas: ele segue uma regra. Vamos pegar <strong>o seu jeito de curtir</strong> e rodar 100 rodadas (média de 40 simulações) com três regras diferentes:</p>
+      <p>Ninguém programou uma bolha: o sistema só segue uma regra. Vamos pegar o seu jeito de curtir e rodar 100 rodadas (média de 40 simulações) com três regras diferentes:</p>
       <ul class="small">
         <li><strong>A · Só engajamento:</strong> quem tem mais curtidas ganha mais espaço. É a regra do passo 2.</li>
         <li><strong>B · Com exploração:</strong> 10% do feed é sorteado entre todos os temas.</li>
@@ -260,7 +260,7 @@ table.mini th,table.mini td{padding:4px 6px;font-size:.82rem}
       <div class="card hl" id="leituraReplay"></div>
 
       <h2>Quem escolhe? O experimento 2×2</h2>
-      <p>Para separar o que é <strong>do sistema</strong> do que é <strong>do usuário</strong>, vamos cruzar dois tipos de usuário com duas regras. Cada cartão mostra o que o usuário recebeu no fim das rodadas.</p>
+      <p>Para separar o que é do sistema do que é do usuário, vamos cruzar dois tipos de usuário com duas regras. Cada cartão mostra o que o usuário recebeu no fim das rodadas.</p>
       <button class="primary" id="rodar22">Rodar o experimento</button>
       <div id="dd" hidden>
         <div class="grid2" id="grade22"></div>
@@ -290,7 +290,7 @@ table.mini th,table.mini td{padding:4px 6px;font-size:.82rem}
   <section class="step" id="s5" aria-labelledby="h5s" hidden>
     <h2 id="h5s">Passo 5 · Pense e discuta</h2>
     <div class="card hl">
-      <p><strong>Ideia central:</strong> o algoritmo faz o que a métrica pede. Se a métrica é engajamento, o feed se estreita sem que ninguém precise querer isso. Mudar o resultado exige mudar a regra, o modelo de negócio e o desenho do sistema, não só consertar o código.</p>
+      <p>O algoritmo faz o que a métrica pede. Se a métrica é engajamento, o feed se estreita mesmo que ninguém queira isso. Para mudar o resultado, é preciso mexer na regra, no modelo de negócio e no desenho do sistema. Consertar o código sozinho não basta.</p>
     </div>
     <h3>Perguntas para discutir</h3>
     <ol class="q">
@@ -312,10 +312,10 @@ table.mini th,table.mini td{padding:4px 6px;font-size:.82rem}
     <details open>
       <summary>O que este modelo não mostra</summary>
       <ul>
-        <li>É um <strong>modelo de brinquedo</strong>: ilustra um mecanismo, não mede nenhuma plataforma real.</li>
-        <li>O efeito real de bolhas é <strong>disputado na pesquisa</strong>. Há estudos em que a escolha do usuário pesou mais que o ranking do algoritmo, e estudos em que trocar o feed quase não mudou a polarização <em>[verificar antes de citar]</em>.</li>
-        <li>No Brasil, boa parte da circulação acontece em <strong>grupos de mensagens</strong>, que não funcionam como um feed ordenado por algoritmo.</li>
-        <li>Aqui os <strong>criadores de conteúdo</strong> não reagem. Na vida real, eles aprendem o que rende curtida e produzem mais disso.</li>
+        <li>É um modelo de brinquedo: ilustra um mecanismo, não mede nenhuma plataforma real.</li>
+        <li>O efeito real de bolhas é disputado na pesquisa. Há estudos em que a escolha do usuário pesou mais que o ranking do algoritmo, e estudos em que trocar o feed quase não mudou a polarização <em>[verificar antes de citar]</em>.</li>
+        <li>No Brasil, boa parte da circulação acontece em grupos de mensagens, que não funcionam como um feed ordenado por algoritmo.</li>
+        <li>Aqui os criadores de conteúdo não reagem. Na vida real, eles aprendem o que rende curtida e produzem mais disso.</li>
         <li>Regulação, moderação e letramento digital também mudam o resultado.</li>
       </ul>
     </details>
@@ -345,8 +345,8 @@ table.mini th,table.mini td{padding:4px 6px;font-size:.82rem}
       <p class="small" style="font-family:Lato,system-ui,sans-serif">Curtiu mexer no código? Na Mauá, estudantes de Ciência da Computação e de Sistemas de Informação aprendem a trabalhar com tecnologias como estas: <a href="https://www.maua.br/graduacao/ciencia-computacao?utm_source=bolhas-demo&utm_medium=modo-nerd&utm_campaign=vestibular" target="_blank" rel="noopener">Ciência da Computação</a> · <a href="https://www.maua.br/graduacao/sistemas-informacao?utm_source=bolhas-demo&utm_medium=modo-nerd&utm_campaign=vestibular" target="_blank" rel="noopener">Sistemas de Informação</a>.</p>
     </div>
     <section class="cta card hl" aria-labelledby="ctaT">
-      <h3 id="ctaT" style="margin-top:0">Quem projeta o sistema decide o que chega até você</h3>
-      <p>Você acabou de testar três regras de recomendação com dados e comparou os resultados. Esse é o dia a dia de quem estuda Ciência da Computação e Sistemas de Informação: construir sistemas e decidir o que eles devem otimizar.</p>
+      <h3 id="ctaT" style="margin-top:0">Alguém escolhe a regra do seu feed. Pode ser você.</h3>
+      <p>Você acabou de testar três regras de recomendação e comparar os resultados com dados. É esse o trabalho de quem estuda Ciência da Computação e Sistemas de Informação: construir esses sistemas e decidir o que eles devem otimizar.</p>
       <div class="row">
         <a class="primary" href="https://www.maua.br/vestibular?utm_source=bolhas-demo&utm_medium=site&utm_campaign=vestibular" target="_blank" rel="noopener">Conhecer o vestibular da Mauá</a>
         <button class="ghost" id="compartilhar">Mostrar para um amigo</button>
@@ -671,7 +671,7 @@ function revela(){
   const ultimo = st.hist.length ? st.hist[st.hist.length-1].temas : [];
   const cont = contagem(ultimo), dom = Math.max(...cont), topU = cont.indexOf(dom);
   const bolha = dom >= 4;
-  let html = `<div class="card hl"><p><strong>Sua previsão:</strong> ${mensagemPrevisao(bolha)}</p>
+  let html = `<div class="card hl"><p>Sua previsão: ${mensagemPrevisao(bolha)}</p>
     <p class="small muted">Último feed: ${blocos(ultimo)} · tema dominante: ${TEMAS[topU].nome} (${dom} de ${TAM}).</p></div>`;
 
   if(somaC === 0){ R.innerHTML = html; return; }
@@ -679,9 +679,9 @@ function revela(){
   const melhor = expo.indexOf(Math.max(...expo));
   const folga = expo[melhor] - pref[melhor];
   let leitura;
-  if(folga > 0.05) leitura = `<strong>O sistema amplificou:</strong> ${pct(pref[melhor])} das suas curtidas foram em <em>${TEMAS[melhor].nome}</em>, mas esse tema ocupou ${pct(expo[melhor])} de tudo que você viu.`;
-  else if(expo[melhor] >= 0.5) leitura = `<strong>O sistema acompanhou a sua escolha:</strong> ${TEMAS[melhor].nome} ocupou ${pct(expo[melhor])} do que você viu, e você curtiu ${pct(pref[melhor])} nesse tema. Cuidado: você só pode curtir o que o feed oferece, então <em>preferência e exposição se influenciam</em> (uma parte da "preferência" pode ter sido induzida pelo próprio feed). No passo 4, usuários simulados com gosto fixo separam o que é do sistema do que é do usuário.`;
-  else leitura = `<strong>O seu feed seguiu variado:</strong> o tema mais frequente (${TEMAS[melhor].nome}) ocupou ${pct(expo[melhor])} do que você viu.`;
+  if(folga > 0.05) leitura = `O sistema amplificou a sua escolha: ${pct(pref[melhor])} das suas curtidas foram em <em>${TEMAS[melhor].nome}</em>, mas esse tema ocupou ${pct(expo[melhor])} de tudo que você viu.`;
+  else if(expo[melhor] >= 0.5) leitura = `O sistema acompanhou a sua escolha. ${TEMAS[melhor].nome} ocupou ${pct(expo[melhor])} do que você viu, e você curtiu ${pct(pref[melhor])} nesse tema. Mas você só pode curtir o que o feed oferece, então preferência e exposição se influenciam: parte da "preferência" pode ter sido induzida pelo próprio feed. No passo 4, usuários simulados com gosto fixo separam o que é do sistema do que é do usuário.`;
+  else leitura = `O seu feed seguiu variado: o tema mais frequente (${TEMAS[melhor].nome}) ocupou ${pct(expo[melhor])} do que você viu.`;
 
   html += `<h3>O que você curtiu × o que o sistema mostrou</h3><div class="card">`;
   TEMAS.forEach((t,i)=>{
@@ -693,15 +693,15 @@ function revela(){
 
   html += `<div class="card"><h3 style="margin-top:0">Como ler este gráfico</h3>
     <ul>
-      <li><strong>"Você curtiu"</strong> é a sua escolha (o que se aproxima de uma <em>câmara de eco</em>).</li>
-      <li><strong>"Você viu"</strong> é o que o sistema entregou. Quando ele passa muito do que você curtiu, o sistema <em>amplificou</em> a sua escolha (o que se aproxima de um <em>filtro-bolha</em>).</li>
+      <li>"Você curtiu" é a sua escolha (o que se aproxima de uma câmara de eco).</li>
+      <li>"Você viu" é o que o sistema entregou. Quando passa muito do que você curtiu, o sistema amplificou a sua escolha (o que se aproxima de um filtro-bolha).</li>
       <li>As duas coisas somam: o usuário escolhe, o sistema reforça, e a reação volta como dado.</li>
     </ul></div>
 
     <h3>Por que isso acontece</h3>
     <div class="card"><p>É um ciclo de realimentação (<em>feedback loop</em>):</p>
       <div class="loop"><span>Você curte</span><i>→</i><span>O sistema conta</span><i>→</i><span>Recalcula o ranking</span><i>→</i><span>Novo feed</span><i>↺</i></div>
-      <p>O sistema usa o <strong>resultado das próprias recomendações</strong> como dado para decidir as próximas. Pequenas vantagens do início crescem sozinhas. Ninguém programou "faça uma bolha": bastou a regra <em>"mostre mais do que gerou curtida"</em>.</p>
+      <p>O sistema usa o resultado das próprias recomendações como dado para decidir as próximas. Pequenas vantagens do início crescem sozinhas. Ninguém programou "faça uma bolha": bastou a regra <em>"mostre mais do que gerou curtida"</em>.</p>
       <p class="small muted">Este é o ciclo de três fases do artigo dos alunos: criação (as manchetes feitas para render), disseminação (o ranking) e recirculação (a curtida voltando como dado).</p></div>`;
   R.innerHTML = html;
 }
@@ -736,8 +736,8 @@ function rodaReplay(){
     + `</tbody></table>`;
   const dA = res[0].div[R_SIM-1], dB = res[1].div[R_SIM-1], dC = res[2].div[R_SIM-1];
   const custo = Math.round((1 - res[2].eng/engA)*100);
-  $("#leituraReplay").innerHTML = `<p><strong>O que isso mostra.</strong> Com o <em>mesmo</em> jeito de curtir, a regra muda o resultado: a diversidade final foi ${fmt(dA)} em A, ${fmt(dB)} em B e ${fmt(dC)} em C.</p>
-    <p><strong>E o custo?</strong> ${custo>0 ? `Em C o engajamento (curtidas por 100 posts) ficou ${custo}% menor que em A.` : `Neste modelo, C não reduziu o engajamento de forma visível.`} Em plataformas reais o custo é incerto, mas é esse tipo de conta que um modelo de negócio baseado em atenção faz antes de adotar uma regra. Por isso a pergunta é também de Sistemas de Informação: <em>qual métrica o negócio escolheu otimizar?</em></p>`;
+  $("#leituraReplay").innerHTML = `<p>Com o mesmo jeito de curtir, a regra muda o resultado: a diversidade final foi ${fmt(dA)} em A, ${fmt(dB)} em B e ${fmt(dC)} em C.</p>
+    <p>${custo>0 ? `Em C, o engajamento (curtidas por 100 posts) ficou ${custo}% menor que em A.` : `Neste modelo, C não reduziu o engajamento de forma visível.`} Em plataformas reais o custo é incerto, mas é esse tipo de conta que uma empresa que vive de atenção faz antes de adotar uma regra. Daí vem uma pergunta de Sistemas de Informação: qual métrica o negócio escolheu otimizar?</p>`;
 }
 function desenhaGrafico(cv=$("#grafico"), cvs=curvas, md=MODOS, an=anota){
   const dpr = window.devicePixelRatio||1;
@@ -793,10 +793,10 @@ function rodaDoisPorDois(){
   }));
   $("#grade22").innerHTML = html;
   $("#dd").hidden = false;
-  $("#leitura22").innerHTML = `<p><strong>Como ler.</strong></p><ul>
-    <li><strong>Neutro + só engajamento (${pct(dados["0A"].dom)}):</strong> o usuário não tinha preferência, mas o feed concentrou. Aqui a bolha vem <em>do sistema</em>.</li>
-    <li><strong>Fiel + só engajamento (${pct(dados["1A"].dom)}):</strong> escolha do usuário e amplificação do sistema se somam.</li>
-    <li><strong>Fiel + teto (${pct(dados["1C"].dom)}):</strong> o teto limita o que o sistema entrega, mas não muda o que o usuário quer. A regra do sistema ajuda, e não elimina a escolha individual.</li>
+  $("#leitura22").innerHTML = `<ul>
+    <li>Neutro com só engajamento (${pct(dados["0A"].dom)}): o usuário não tinha preferência, mas o feed concentrou. Aqui a bolha vem do sistema.</li>
+    <li>Fiel com só engajamento (${pct(dados["1A"].dom)}): escolha do usuário e amplificação do sistema se somam.</li>
+    <li>Fiel com teto (${pct(dados["1C"].dom)}): o teto limita o que o sistema entrega, mas não muda o que o usuário quer. A regra do sistema ajuda, mas não elimina a escolha individual.</li>
   </ul><p class="small muted">Respondendo à pergunta central, quem escolhe o que chega até nós são os dois, em camadas diferentes (e, fora deste modelo, também os criadores de conteúdo).</p>`;
 }
 $("#rodar22").onclick = rodaDoisPorDois;
