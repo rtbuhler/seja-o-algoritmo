@@ -16,12 +16,13 @@
   /* Identidade visual IMT (maua.br): azul institucional, azul-marinho, turquesa de destaque */
   --bg:#ffffff; --surface:#f2f9ff; --ink:#00293f; --muted:#5f6670; --accent:#004587; --on-accent:#ffffff;
   --line:#c9d8e8; --hl:#e3f0fc; --ok:#1b7f74; --brand:#004587; --cyan:#07fce8; --r:2px; color-scheme:light;
+  --c1:#e8590c; --c2:#095dac; --c3:#b45309; --c4:#1b7f74;
 }
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){ --bg:#001a2b; --surface:#00293f; --ink:#eaf4ff; --muted:#a4b6c8; --accent:#07fce8; --on-accent:#00293f; --line:#1d4a68; --hl:#0b3a57; --ok:#4cc9b0; --brand:#07fce8; color-scheme:dark; }
+  :root:not([data-theme="light"]){ --bg:#001a2b; --surface:#00293f; --ink:#eaf4ff; --muted:#a4b6c8; --accent:#07fce8; --on-accent:#00293f; --line:#1d4a68; --hl:#0b3a57; --ok:#4cc9b0; --brand:#07fce8; color-scheme:dark; --c1:#ff8a4c; --c2:#5aa9ff; --c3:#f5c542; --c4:#4cd9b0; }
   :root:not([data-theme="light"]) .brand img{background:#fff;padding:6px 10px}
 }
-:root[data-theme="dark"]{ --bg:#001a2b; --surface:#00293f; --ink:#eaf4ff; --muted:#a4b6c8; --accent:#07fce8; --on-accent:#00293f; --line:#1d4a68; --hl:#0b3a57; --ok:#4cc9b0; --brand:#07fce8; color-scheme:dark; }
+:root[data-theme="dark"]{ --bg:#001a2b; --surface:#00293f; --ink:#eaf4ff; --muted:#a4b6c8; --accent:#07fce8; --on-accent:#00293f; --line:#1d4a68; --hl:#0b3a57; --ok:#4cc9b0; --brand:#07fce8; color-scheme:dark; --c1:#ff8a4c; --c2:#5aa9ff; --c3:#f5c542; --c4:#4cd9b0; }
 :root[data-theme="dark"] .brand img{background:#fff;padding:6px 10px}
 *{box-sizing:border-box}
 html{font-size:16px}
@@ -712,9 +713,9 @@ $("#jogarDeNovo").onclick = ()=>{ const pr = st.pred; novoEstado(); st.pred = pr
 
 /* =============== PASSO 4 =============== */
 const MODOS = [
-  {id:"A", nome:"A · Só engajamento", cor:"#e8590c"},
-  {id:"B", nome:"B · Com exploração", cor:"#095dac"},
-  {id:"C", nome:"C · Com teto de diversidade", cor:"#1b7f74"}
+  {id:"A", nome:"A · Só engajamento", cor:"#e8590c", v:"--c1"},
+  {id:"B", nome:"B · Com exploração", cor:"#095dac", v:"--c2"},
+  {id:"C", nome:"C · Com teto de diversidade", cor:"#1b7f74", v:"--c4"}
 ];
 const R_SIM = 100, N_SIM = 40, TAM_SIM = 10;
 let curvas = null, anota = null;
@@ -731,7 +732,7 @@ function rodaReplay(){
   anota = iA>=0 ? {x:iA+1, txt:`A passa a ser bolha na rodada ${iA+1}`} : null;
   $("#replay").hidden = false;
   desenhaGrafico();
-  $("#legenda").innerHTML = MODOS.map(m=>`<span><i style="background:${m.cor}"></i>${m.nome}</span>`).join("");
+  $("#legenda").innerHTML = MODOS.map(m=>`<span><i style="background:var(${m.v})"></i>${m.nome}</span>`).join("");
   const engA = res[0].eng;
   $("#tabela").innerHTML = `<table><thead><tr><th>Regra</th><th>Diversidade final</th><th>Tema dominante</th><th>Curtidas por 100 posts</th></tr></thead><tbody>`
     + res.map((r,k)=>`<tr><td><strong>${MODOS[k].nome}</strong></td><td>${fmt(r.div[R_SIM-1])}</td><td>${pct(r.dom)} do feed</td><td>${Math.round(r.eng*100)}${k? ` (${r.eng>=engA?"+":""}${Math.round((r.eng/engA-1)*100)}%)`:""}</td></tr>`).join("")
@@ -748,22 +749,22 @@ function desenhaGrafico(cv=$("#grafico"), cvs=curvas, md=MODOS, an=anota){
   const g = cv.getContext("2d"); g.scale(dpr,dpr);
   const cs = getComputedStyle(document.documentElement);
   const ink = cs.getPropertyValue("--ink").trim(), mut = cs.getPropertyValue("--muted").trim(), line = cs.getPropertyValue("--line").trim();
-  const L=56,R=10,T=14,B=30, pw=w-L-R, ph=h-T-B;
+  const L=56,R=10,T=14,B=44, pw=w-L-R, ph=h-T-B;
   g.clearRect(0,0,w,h);
-  g.font = "12px system-ui,sans-serif"; g.fillStyle = mut; g.strokeStyle = line; g.lineWidth = 1;
+  g.font = "13px Lato,system-ui,sans-serif"; g.fillStyle = ink; g.strokeStyle = ink + "33"; g.lineWidth = 1;
   for(let v=0; v<=1.001; v+=0.25){
     const y = T+ph*(1-v);
     g.beginPath(); g.moveTo(L,y); g.lineTo(w-R,y); g.stroke();
     g.textAlign="right"; g.fillText(fmt(v), L-6, y+4);
   }
   g.textAlign="center";
-  [1,25,50,75,100].forEach(r=>g.fillText(r, L+pw*(r-1)/(R_SIM-1), h-12));
-  g.fillText("rodadas", L+pw/2, h-1);
+  [1,25,50,75,100].forEach(r=>g.fillText(r, L+pw*(r-1)/(R_SIM-1), T+ph+17));
+  g.fillText("rodadas", L+pw/2, h-5);
   g.save(); g.translate(13, T+ph/2); g.rotate(-Math.PI/2); g.textAlign = "center";
   g.fillText("diversidade do feed", 0, 0); g.restore();
   if(!cvs) return;
   cvs.forEach((c,k)=>{
-    g.strokeStyle = md[k].cor; g.lineWidth = 3; g.beginPath();
+    g.strokeStyle = cs.getPropertyValue(md[k].v || "").trim() || md[k].cor; g.lineWidth = 3; g.beginPath();
     c.forEach((v,i)=>{ const x=L+pw*i/(R_SIM-1), y=T+ph*(1-v); i?g.lineTo(x,y):g.moveTo(x,y); });
     g.stroke();
   });
@@ -904,11 +905,11 @@ let labCurvas = null, labModos = null;
 function rodaLab(){
   const exec = (p, modo, seed)=>mediaSims(p, modo, R_SIM, TAM_SIM, N_SIM, seed);
   const r = {nA:exec(USU_NEUTRO,"A",7000), nX:exec(USU_NEUTRO,"X",7100), fA:exec(USU_FIEL,"A",7200), fX:exec(USU_FIEL,"X",7300)};
-  labModos = [{nome:"Neutro · regra A", cor:"#e8590c"},{nome:"Neutro · seus parâmetros", cor:"#095dac"},{nome:"Fiel · regra A", cor:"#b45309"},{nome:"Fiel · seus parâmetros", cor:"#1b7f74"}];
+  labModos = [{nome:"Neutro · regra A", cor:"#e8590c", v:"--c1"},{nome:"Neutro · seus parâmetros", cor:"#095dac", v:"--c2"},{nome:"Fiel · regra A", cor:"#b45309", v:"--c3"},{nome:"Fiel · seus parâmetros", cor:"#1b7f74", v:"--c4"}];
   labCurvas = [r.nA.div, r.nX.div, r.fA.div, r.fX.div];
   $("#graficoLab").hidden = false;
   desenhaGrafico($("#graficoLab"), labCurvas, labModos, null);
-  $("#legLab").innerHTML = labModos.map(m=>`<span><i style="background:${m.cor}"></i>${m.nome}</span>`).join("");
+  $("#legLab").innerHTML = labModos.map(m=>`<span><i style="background:var(${m.v})"></i>${m.nome}</span>`).join("");
   $("#lerLab").hidden = false;
   $("#lerLab").innerHTML = `<p style="margin-top:0">Como ler este gráfico</p>
     <ul>

@@ -69,7 +69,7 @@ LICENSE                           licença MIT do código (veja a nota sobre a m
 
 A atividade se apoia no artigo de iniciação científica *Economia da desinformação e sistemas algorítmicos* (Angelo e Nogueira, RICEM, Revista de Iniciação Científica do Ensino Médio, 2026), que usa o modelo de três fases (criação, disseminação e recirculação) de Jesus-Silva (2026).
 
-Desenvolvido por Rudolf Theoderich Buhler, coordenador dos cursos de Ciência da Computação e de Sistemas de Informação do Instituto Mauá de Tecnologia, com o apoio do Claude (Anthropic).
+Desenvolvido por Rudolf Theoderich Buhler, coordenador dos cursos de Ciência da Computação e de Sistemas de Informação do Instituto Mauá de Tecnologia (Campus de São Caetano do Sul), com o apoio do Claude (Anthropic).
 
 Quer aprender a construir sistemas como este e a decidir o que eles devem fazer? Conheça [Ciência da Computação](https://www.maua.br/graduacao/ciencia-computacao?utm_source=bolhas-demo&utm_medium=github&utm_campaign=vestibular) e [Sistemas de Informação](https://www.maua.br/graduacao/sistemas-informacao?utm_source=bolhas-demo&utm_medium=github&utm_campaign=vestibular) na Mauá. Datas, valores e inscrição ficam na página do [vestibular](https://www.maua.br/vestibular?utm_source=bolhas-demo&utm_medium=github&utm_campaign=vestibular).
 
