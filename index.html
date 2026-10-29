@@ -207,7 +207,18 @@ table.mini th,table.mini td{padding:4px 6px;font-size:.82rem}
     </div>
     <div class="only-nerd card nerd-box" id="nerdPainel">
       <h3 style="margin-top:0">Painel do sistema (modo nerd)</h3>
-      <p>P(tema i) = pontuaçãoᵢ<sup>γ</sup> / Σ pontuaçãoⱼ<sup>γ</sup> &nbsp;·&nbsp; H = −Σ pᵢ ln pᵢ / ln K</p>
+      <div style="font-family:Lato,system-ui,sans-serif;font-size:.95rem">
+        <p><strong>Em palavras simples</strong></p>
+        <ol>
+          <li><strong>Pontuação:</strong> cada tema começa com 1 ponto. Cada curtida soma ponto ao tema.</li>
+          <li><strong>Peso (γ):</strong> o sistema não usa a pontuação direta. Ele a eleva a γ, que funciona como um <em>amplificador</em>. Quanto maior o γ, mais o líder é favorecido.</li>
+          <li><strong>Chance:</strong> é a fatia de cada tema na roleta: peso do tema ÷ soma de todos os pesos.</li>
+          <li><strong>Diversidade (H):</strong> mede o quanto o feed está espalhado. 1 = todos os temas aparecem igual; 0 = só um tema.</li>
+          <li><strong>ε e teto:</strong> ε sorteia uma parte do feed sem olhar o histórico; o teto limita o espaço de cada tema.</li>
+        </ol>
+        <p class="card hl" id="exemploGama" style="margin:8px 0"></p>
+        <p class="small muted">Fórmulas, para quem quiser: P(i) = pontuaçãoᵢ<sup>γ</sup> / Σ pontuaçãoⱼ<sup>γ</sup> &nbsp;·&nbsp; H = −Σ pᵢ ln pᵢ / ln K. Explicação completa no <a href="https://github.com/rtbuhler/seja-o-algoritmo/blob/main/docs/02-como-o-codigo-funciona.md" target="_blank" rel="noopener">guia do código</a>.</p>
+      </div>
       <div id="tabNerd"></div>
       <div class="sl"><label for="slG">γ (intensidade)</label><input type="range" id="slG" min="0" max="4" step="0.5" value="2"><output id="oG">2</output></div>
       <div class="sl"><label for="slE">ε (exploração)</label><input type="range" id="slE" min="0" max="0.5" step="0.05" value="0"><output id="oE">0%</output></div>
@@ -348,9 +359,10 @@ table.mini th,table.mini td{padding:4px 6px;font-size:.82rem}
       <p class="small muted">Os links abrem o site oficial do Instituto Mauá de Tecnologia em uma nova aba. Datas, valores e como se inscrever ficam na página do vestibular.</p>
       <p class="small muted" id="msgComp" aria-live="polite"></p>
     </section>
+    <p class="small muted">Quer saber como foi feito? O código é aberto e tem um guia passo a passo, para quem nunca programou e para quem já programa: <a href="https://github.com/rtbuhler/seja-o-algoritmo?utm_source=bolhas-demo&utm_medium=site&utm_campaign=github" target="_blank" rel="noopener">ver no GitHub</a>.</p>
     <div class="row"><button class="ghost" id="reiniciarTudo">Recomeçar do passo 1</button></div>
   </section>
-  <footer class="rodape">Instituto Mauá de Tecnologia · Ciência da Computação e Sistemas de Informação · <a href="https://www.maua.br/vestibular?utm_source=bolhas-demo&utm_medium=site&utm_campaign=vestibular" target="_blank" rel="noopener">Vestibular Mauá</a> · <a href="https://www.maua.br" target="_blank" rel="noopener">maua.br</a></footer>
+  <footer class="rodape">Instituto Mauá de Tecnologia · Ciência da Computação e Sistemas de Informação · <a href="https://www.maua.br/vestibular?utm_source=bolhas-demo&utm_medium=site&utm_campaign=vestibular" target="_blank" rel="noopener">Vestibular Mauá</a> · <a href="https://github.com/rtbuhler/seja-o-algoritmo" target="_blank" rel="noopener">Código aberto no GitHub</a> · <a href="https://www.maua.br" target="_blank" rel="noopener">maua.br</a></footer>
 </main>
 
 <script>
@@ -852,6 +864,10 @@ function renderNerd(){
     + TEMAS.map((t,i)=>`<tr><td>${t.ico} ${t.nome}</td><td>${st.cliq[i].toFixed(2)}</td><td>${Math.pow(st.cliq[i],cf.gama).toFixed(2)}</td><td>${pct(pr[i])}</td></tr>`).join("")
     + `</tbody></table>`;
   $("#labParams").textContent = descreveCfg();
+  // exemplo vivo: dois temas, um com 4 pontos e outro com 2
+  const g = cf.gama, a = Math.pow(4,g), b = Math.pow(2,g), pa = a/(a+b);
+  $("#exemploGama").innerHTML = `<strong>Exemplo com o seu γ = ${g}:</strong> Esporte tem 4 pontos e Ciência tem 2. Pesos: 4<sup>${g}</sup> = ${+a.toFixed(2)} e 2<sup>${g}</sup> = ${+b.toFixed(2)}. Chances: Esporte ${pct(pa)} e Ciência ${pct(1-pa)}. `
+    + (g===0 ? "Com γ = 0 os pontos não importam: os dois têm a mesma chance." : "Mexa no γ e veja a diferença mudar.");
 }
 function descreveCfg(){ const c = CFG.X; return `γ=${c.gama}, ε=${Math.round(c.eps*100)}%, teto=${c.teto ? Math.round(c.teto*100)+"%" : "sem teto"}`; }
 function leSliders(){
