@@ -256,6 +256,7 @@ table.mini th,table.mini td{padding:4px 6px;font-size:.82rem}
       <h3>Diversidade do feed ao longo das rodadas</h3>
       <canvas id="grafico" role="img" aria-label="Gráfico de linhas da diversidade do feed por rodada nas regras A, B e C."></canvas>
       <div class="legend" id="legenda"></div>
+      <p class="small muted">Eixo vertical: diversidade do feed (1 = os 5 temas aparecem igualmente, 0 = um tema só). Eixo horizontal: rodadas. Cada linha é a média de 40 simulações com o seu perfil de curtidas. Linha que cai: o feed está virando bolha.</p>
       <div id="tabela"></div>
       <div class="card hl" id="leituraReplay"></div>
 
@@ -274,6 +275,7 @@ table.mini th,table.mini td{padding:4px 6px;font-size:.82rem}
       <button class="primary" id="rodarLab">Rodar laboratório</button>
       <canvas id="graficoLab" role="img" aria-label="Gráfico de linhas da diversidade do feed por rodada, comparando a regra A e os seus parâmetros para usuário neutro e fiel." hidden style="margin-top:10px"></canvas>
       <div class="legend" id="legLab"></div>
+      <div class="card" id="lerLab" hidden style="font-family:Lato,system-ui,sans-serif;font-size:.92rem"></div>
       <div id="tabLab"></div>
       <h3>Desafios</h3>
       <ol class="chal">
@@ -746,7 +748,7 @@ function desenhaGrafico(cv=$("#grafico"), cvs=curvas, md=MODOS, an=anota){
   const g = cv.getContext("2d"); g.scale(dpr,dpr);
   const cs = getComputedStyle(document.documentElement);
   const ink = cs.getPropertyValue("--ink").trim(), mut = cs.getPropertyValue("--muted").trim(), line = cs.getPropertyValue("--line").trim();
-  const L=40,R=10,T=14,B=30, pw=w-L-R, ph=h-T-B;
+  const L=56,R=10,T=14,B=30, pw=w-L-R, ph=h-T-B;
   g.clearRect(0,0,w,h);
   g.font = "12px system-ui,sans-serif"; g.fillStyle = mut; g.strokeStyle = line; g.lineWidth = 1;
   for(let v=0; v<=1.001; v+=0.25){
@@ -757,6 +759,8 @@ function desenhaGrafico(cv=$("#grafico"), cvs=curvas, md=MODOS, an=anota){
   g.textAlign="center";
   [1,25,50,75,100].forEach(r=>g.fillText(r, L+pw*(r-1)/(R_SIM-1), h-12));
   g.fillText("rodadas", L+pw/2, h-1);
+  g.save(); g.translate(13, T+ph/2); g.rotate(-Math.PI/2); g.textAlign = "center";
+  g.fillText("diversidade do feed", 0, 0); g.restore();
   if(!cvs) return;
   cvs.forEach((c,k)=>{
     g.strokeStyle = md[k].cor; g.lineWidth = 3; g.beginPath();
@@ -905,6 +909,21 @@ function rodaLab(){
   $("#graficoLab").hidden = false;
   desenhaGrafico($("#graficoLab"), labCurvas, labModos, null);
   $("#legLab").innerHTML = labModos.map(m=>`<span><i style="background:${m.cor}"></i>${m.nome}</span>`).join("");
+  $("#lerLab").hidden = false;
+  $("#lerLab").innerHTML = `<p style="margin-top:0">Como ler este gráfico</p>
+    <ul>
+      <li>Eixo vertical: a diversidade do feed. Vale 1 quando os 5 temas aparecem igualmente e 0 quando um tema ocupa tudo.</li>
+      <li>Eixo horizontal: as rodadas de recomendação, de 1 a 100.</li>
+      <li>Cada linha é a média de 40 simulações. Linha que cai: o feed está virando bolha. Linha que fica no alto: o feed segue variado.</li>
+    </ul>
+    <p>As quatro linhas:</p>
+    <ul>
+      <li>Neutro: um usuário simulado que curte todos os temas igualmente (30% de chance de clicar em qualquer um).</li>
+      <li>Fiel: um usuário simulado que curte sobretudo Esporte (75% de chance em Esporte e 15% nos outros).</li>
+      <li>Regra A: a referência, só engajamento (γ=2, sem exploração e sem teto).</li>
+      <li>Seus parâmetros: a regra que você montou nos controles (${descreveCfg()}).</li>
+    </ul>
+    <p style="margin-bottom:0">Compare as linhas do mesmo usuário: a distância entre "regra A" e "seus parâmetros" mostra o efeito das suas escolhas.</p>`;
   const linha = (n,x)=>`<tr><td>${n}</td><td>${fmt(x.div[R_SIM-1])}</td><td>${pct(x.dom)}</td><td>${Math.round(x.eng*100)}</td></tr>`;
   $("#tabLab").innerHTML = `<p class="small">Seus parâmetros: <strong>${descreveCfg()}</strong></p><table class="mini"><thead><tr><th>cenário</th><th>div. final</th><th>tema dom.</th><th>curtidas/100</th></tr></thead><tbody>`
     + linha("Neutro · A", r.nA) + linha("Neutro · seus parâmetros", r.nX) + linha("Fiel · A", r.fA) + linha("Fiel · seus parâmetros", r.fX) + `</tbody></table>`;
