@@ -74,9 +74,9 @@ Há ainda o efeito de verdade ilusória: ver algo repetidas vezes aumenta a sens
 
 O efeito real das bolhas é disputado. Pesquisadores sérios discordam. O resumo a seguir precisa ser confirmado nas fontes antes de citar:
 
-- Há estudos em que a escolha individual limitou a exposição a ideias diferentes mais do que o ranking do algoritmo (por exemplo, Bakshy, Messing e Adamic, 2015, na revista *Science*). **[verificar antes de citar]**
-- Há estudos em que trocar o feed por ordem cronológica mudou o que as pessoas viam, mas quase não mudou a polarização no curto prazo (pesquisas sobre a eleição dos EUA em 2020 com a Meta, 2023). **[verificar antes de citar]**
-- Notícias falsas se espalharam mais que verdadeiras em um estudo no Twitter (Vosoughi, Roy e Aral, 2018), e os autores atribuíram a diferença principalmente a pessoas, não a robôs. **[verificar antes de citar]**
+- Há estudos em que a escolha individual limitou a exposição a ideias diferentes mais do que o ranking do algoritmo (por exemplo, Bakshy, Messing e Adamic, 2015, na revista *Science*).
+- Há estudos em que trocar o feed por ordem cronológica mudou o que as pessoas viam, mas quase não mudou a polarização no curto prazo (pesquisas sobre a eleição dos EUA em 2020 com a Meta, 2023).
+- Notícias falsas se espalharam mais que verdadeiras em um estudo no Twitter (Vosoughi, Roy e Aral, 2018), e os autores atribuíram a diferença principalmente a pessoas, não a robôs.
 - No Brasil, boa parte da circulação acontece em grupos de mensagens, que não funcionam como um feed ordenado por algoritmo.
 
 Por isso o site é um modelo de brinquedo: mostra um mecanismo possível, não mede nenhuma plataforma real.
