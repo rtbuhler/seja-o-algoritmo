@@ -1,9 +1,12 @@
 # 6. Referências
 
-## 6.1 O trabalho que originou o projeto
+## 6.1 Princípio de fontes
 
-- ANGELO, N. B.; NOGUEIRA, A. C. Economia da desinformação e sistemas algorítmicos: uma revisão sobre os mecanismos de criação, disseminação e recirculação da desinformação e sua relação com a formação de bolhas informacionais e câmaras de eco. *RICEM, Revista de Iniciação Científica do Ensino Médio*, 2026.
-- JESUS-SILVA, T. H. de. O ciclo da desinformação em plataformas digitais: criação, disseminação e recirculação. *Em Questão*, Porto Alegre, v. 32, e-146993, 2026. DOI: 10.1590/1808-5245.32.146993.
+Este projeto usa apenas fontes publicadas e verificáveis: artigos de periódicos e anais, e livros. Trabalhos escolares não são usados como fonte.
+
+Para o ciclo de três fases (criação, disseminação e recirculação):
+
+- JESUS-SILVA, T. H. de. O ciclo da desinformação em plataformas digitais: criação, disseminação e recirculação. *Em Questão*, Porto Alegre, v. 32, 2026. DOI: 10.1590/1808-5245.32.146993. Artigo exploratório que propõe o modelo trifásico; os metadados foram conferidos na Crossref. Por ser uma proposta recente, o projeto a usa como moldura didática e não como resultado consolidado.
 
 ## 6.2 Artigos com DOI conferido
 
@@ -13,7 +16,10 @@ Os metadados abaixo (título, autoria, ano, periódico, volume e páginas) foram
 - BAKSHY, E.; MESSING, S.; ADAMIC, L. A. Exposure to ideologically diverse news and opinion on Facebook. *Science*, v. 348, n. 6239, p. 1130-1132, 2015. DOI: 10.1126/science.aaa1160.
 - GONZÁLEZ-BAILÓN, S. et al. Asymmetric ideological segregation in exposure to political news on Facebook. *Science*, v. 381, n. 6656, p. 392-398, 2023. DOI: 10.1126/science.ade7138.
 - GUESS, A. M. et al. How do social media feed algorithms affect attitudes and behavior in an election campaign? *Science*, v. 381, n. 6656, p. 398-404, 2023. DOI: 10.1126/science.abp9364.
+- LAZER, D. M. J. et al. The science of fake news. *Science*, v. 359, n. 6380, p. 1094-1096, 2018. DOI: 10.1126/science.aao2998.
+- MANSOURY, M. et al. Feedback loop and bias amplification in recommender systems. In: ACM INTERNATIONAL CONFERENCE ON INFORMATION & KNOWLEDGE MANAGEMENT (CIKM), 29., 2020. p. 2145-2148. DOI: 10.1145/3340531.3412152.
 - NYHAN, B. et al. Like-minded sources on Facebook are prevalent but not polarizing. *Nature*, v. 620, n. 7972, p. 137-144, 2023. DOI: 10.1038/s41586-023-06297-w.
+- PENNYCOOK, G.; CANNON, T. D.; RAND, D. G. Prior exposure increases perceived accuracy of fake news. *Journal of Experimental Psychology: General*, v. 147, n. 12, p. 1865-1880, 2018. DOI: 10.1037/xge0000465.
 - SHANNON, C. E. A mathematical theory of communication. *Bell System Technical Journal*, v. 27, n. 3, p. 379-423, 1948. DOI: 10.1002/j.1538-7305.1948.tb01338.x.
 - VOSOUGHI, S.; ROY, D.; ARAL, S. The spread of true and false news online. *Science*, v. 359, n. 6380, p. 1146-1151, 2018. DOI: 10.1126/science.aap9559.
 

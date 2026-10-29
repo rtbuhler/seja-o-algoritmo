@@ -40,7 +40,7 @@ Este é o mecanismo central do projeto.
 Você curte  →  o sistema conta  →  recalcula o ranking  →  novo feed  →  você curte...
 ```
 
-O sistema usa o resultado das próprias recomendações para decidir as próximas. Pequenas vantagens do começo crescem sozinhas, como uma bola de neve. É um *rich-get-richer*: quem tem mais, ganha mais.
+O sistema usa o resultado das próprias recomendações para decidir as próximas. Pequenas vantagens do começo crescem sozinhas, como uma bola de neve. É um *rich-get-richer*: quem tem mais, ganha mais. Em sistemas de recomendação, esse efeito é estudado como *feedback loop* e amplificação de viés (Mansoury et al., 2020).
 
 No site, você vê isso em três lugares: na mensagem "o sistema anotou as curtidas", na tabela de chances do passo 2 e na rosca "Sua bolha agora".
 
@@ -62,20 +62,20 @@ Um cuidado: você só pode curtir o que aparece. Então preferência e exposiç�
 
 ## 1.6 O ciclo da desinformação em três fases
 
-O site se apoia no artigo *Economia da desinformação e sistemas algorítmicos* (Angelo e Nogueira, RICEM 2026, Revista de Iniciação Científica do Ensino Médio), que usa o modelo de três fases de Jesus-Silva (2026):
+O ciclo da desinformação em plataformas pode ser descrito em três fases, como propõe Jesus-Silva (2026) em um artigo exploratório da revista *Em Questão*. É uma proposta recente, usada aqui como moldura didática. Para uma visão de conjunto da pesquisa sobre desinformação, veja Lazer et al. (2018).
 
-1. Criação: conteúdo feito para gerar engajamento, às vezes imitando a aparência de jornal. No site: as manchetes, algumas em estilo caça-clique.
+1. Criação: conteúdo feito para gerar engajamento. No site: as manchetes, algumas em estilo caça-clique.
 2. Disseminação: a plataforma coleta dados e ordena o feed. No site: o sorteio por curtidas.
 3. Recirculação: o que engajou volta a circular e realimenta o sistema. No site: suas curtidas virando dado.
 
-Há ainda o efeito de verdade ilusória: ver algo repetidas vezes aumenta a sensação de que é verdade. É um dos motivos de a recirculação ser tão eficaz.
+Há ainda o efeito de verdade ilusória: ver algo repetidas vezes aumenta a sensação de que é verdade. Pennycook, Cannon e Rand (2018) mostraram que uma exposição prévia aumenta a acurácia percebida de notícias falsas. Isso ajuda a entender por que a recirculação pode ser tão eficaz.
 
 ## 1.7 O que a pesquisa diz (e o que ela não diz)
 
-O efeito real das bolhas é disputado. Pesquisadores sérios discordam. O resumo a seguir precisa ser confirmado nas fontes antes de citar:
+O efeito real das bolhas é disputado. Pesquisadores sérios discordam. O resumo a seguir segue a literatura; para os detalhes, consulte os artigos originais (os DOIs estão em `docs/06-referencias.md`):
 
 - Há estudos em que a escolha individual limitou a exposição a ideias diferentes mais do que o ranking do algoritmo (por exemplo, Bakshy, Messing e Adamic, 2015, na revista *Science*).
-- Há estudos em que trocar o feed por ordem cronológica mudou o que as pessoas viam, mas quase não mudou a polarização no curto prazo (pesquisas sobre a eleição dos EUA em 2020 com a Meta, 2023).
+- Há estudos em que trocar o feed por ordem cronológica mudou o que as pessoas viam, mas quase não mudou a polarização no curto prazo (estudos sobre a eleição dos EUA em 2020 feitos em colaboração com a Meta: Guess et al., 2023; Nyhan et al., 2023; González-Bailón et al., 2023).
 - Notícias falsas se espalharam mais que verdadeiras em um estudo no Twitter (Vosoughi, Roy e Aral, 2018), e os autores atribuíram a diferença principalmente a pessoas, não a robôs.
 - No Brasil, boa parte da circulação acontece em grupos de mensagens, que não funcionam como um feed ordenado por algoritmo.
 

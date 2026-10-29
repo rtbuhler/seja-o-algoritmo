@@ -71,7 +71,7 @@ LICENSE                           licença MIT do código (veja a nota sobre a m
 
 ## Sobre o projeto
 
-A atividade se apoia no artigo de iniciação científica *Economia da desinformação e sistemas algorítmicos* (Angelo e Nogueira, RICEM, Revista de Iniciação Científica do Ensino Médio, 2026), que usa o modelo de três fases (criação, disseminação e recirculação) de Jesus-Silva (2026).
+O projeto usa apenas fontes publicadas e verificáveis. O ciclo de três fases (criação, disseminação e recirculação) segue a proposta de Jesus-Silva (2026), e a lógica econômica vem de Zuboff (2019) e Srnicek (2016). A lista completa, com DOIs conferidos, está em [`docs/06-referencias.md`](docs/06-referencias.md).
 
 Desenvolvido por Rudolf Theoderich Buhler, coordenador dos cursos de Ciência da Computação e de Sistemas de Informação do Instituto Mauá de Tecnologia (Campus de São Caetano do Sul), com o apoio do Claude (Anthropic).
 

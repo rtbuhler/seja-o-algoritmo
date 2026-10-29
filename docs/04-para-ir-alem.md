@@ -49,7 +49,7 @@ Boas contribuições para quem está começando: corrigir um texto, adicionar ma
 
 ## 4.5 Estudar essas tecnologias na Mauá
 
-Este projeto nasceu em um contexto acadêmico: um artigo de iniciação científica de estudantes de Ensino Médio sobre economia da desinformação e algoritmos de plataformas. Se você gostou de entender como esses sistemas funcionam e quer aprender a construí-los e a decidir o que eles devem fazer, vale conhecer os cursos de computação do Instituto Mauá de Tecnologia:
+Este projeto nasceu de um seminário acadêmico sobre incentivos econômicos e algoritmos nas plataformas digitais. Se você gostou de entender como esses sistemas funcionam e quer aprender a construí-los e a decidir o que eles devem fazer, vale conhecer os cursos de computação do Instituto Mauá de Tecnologia:
 
 - [Ciência da Computação](https://www.maua.br/graduacao/ciencia-computacao?utm_source=bolhas-demo&utm_medium=docs&utm_campaign=vestibular)
 - [Sistemas de Informação](https://www.maua.br/graduacao/sistemas-informacao?utm_source=bolhas-demo&utm_medium=docs&utm_campaign=vestibular)

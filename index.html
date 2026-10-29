@@ -342,7 +342,7 @@ details.econ label{font-size:.9rem}
 
     <h3>De onde vem essa ideia</h3>
     <div class="card">
-      <p>Este site se apoia no artigo <em>Economia da desinformação e sistemas algorítmicos</em> (Angelo e Nogueira, RICEM 2026), que usa o modelo de três fases de Jesus-Silva (2026) e se apoia nos conceitos de capitalismo de vigilância (Zuboff) e de capitalismo de plataforma (Srnicek):</p>
+      <p>Este site usa literatura publicada. O ciclo de três fases segue a proposta de Jesus-Silva (2026), e a lógica econômica por trás dele vem dos conceitos de capitalismo de vigilância (Zuboff, 2019) e de capitalismo de plataforma (Srnicek, 2016). As fontes completas estão na pasta <em>docs</em> do repositório.</p>
       <div class="tri">
         <div><b>1 · Criação</b>Conteúdo feito para gerar engajamento. Aqui: as manchetes, algumas em estilo caça-clique.</div>
         <div><b>2 · Disseminação</b>A plataforma coleta dados e ordena o feed. Aqui: o sorteio por curtidas.</div>
@@ -365,10 +365,10 @@ details.econ label{font-size:.9rem}
       <summary>Glossário rápido</summary>
       <dl>
         <dt>Função objetivo (métrica)</dt><dd>O número que o sistema tenta aumentar, como cliques ou tempo de tela.</dd>
-        <dt>Feedback loop</dt><dd>O sistema recomenda, você reage, a reação vira dado e o sistema recomenda mais do mesmo.</dd>
+        <dt>Feedback loop</dt><dd>O sistema recomenda, você reage, a reação vira dado e o sistema recomenda mais do mesmo. Esse efeito é estudado em sistemas de recomendação (Mansoury et al., 2020).</dd>
         <dt>Filtro-bolha</dt><dd>Estreitamento causado pela filtragem técnica da plataforma.</dd>
         <dt>Câmara de eco</dt><dd>Ambiente em que pessoas com ideias parecidas repetem e validam as mesmas coisas; depende também das escolhas do usuário.</dd>
-        <dt>Efeito de verdade ilusória</dt><dd>Ver algo repetidas vezes aumenta a sensação de que é verdade.</dd>
+        <dt>Efeito de verdade ilusória</dt><dd>Ver algo repetidas vezes aumenta a sensação de que é verdade. Pennycook, Cannon e Rand (2018) mostraram isso com notícias falsas.</dd>
         <dt>Entropia (diversidade)</dt><dd>Medida de quão espalhado está o feed entre os temas: 1 = muito variado, 0 = um tema só.</dd>
         <dt>Capitalismo de vigilância (Zuboff)</dt><dd>Modelo em que o comportamento das pessoas vira dado, e o dado vira previsão que se vende. Aqui, as suas curtidas são a matéria-prima do sistema.</dd>
         <dt>Capitalismo de plataforma (Srnicek)</dt><dd>Empresas que funcionam como infraestrutura entre usuários, anunciantes e criadores, e lucram com os dados dessas interações.</dd>
@@ -765,7 +765,7 @@ function revela(){
       <div class="loop"><span>Você curte</span><i>→</i><span>O sistema conta</span><i>→</i><span>Recalcula o ranking</span><i>→</i><span>Novo feed</span><i>↺</i></div>
       <p>O sistema usa o resultado das próprias recomendações como dado para decidir as próximas. Pequenas vantagens do início crescem sozinhas. Ninguém programou "faça uma bolha": bastou a regra <em>"mostre mais do que gerou curtida"</em>.</p>
       <p class="small muted">Economistas chamam essa dinâmica de retornos crescentes: quanto mais algo é escolhido, mais vantajoso ele fica, e uma pequena vantagem inicial pode travar o resultado (Arthur, 1989). No modelo, isso acontece quando γ é maior que 1.</p>
-      <p class="small muted">Este é o ciclo de três fases do artigo dos alunos: criação (as manchetes feitas para render), disseminação (o ranking) e recirculação (a curtida voltando como dado).</p></div>`;
+      <p class="small muted">Este é o ciclo de três fases proposto por Jesus-Silva (2026): criação (as manchetes feitas para render), disseminação (o ranking) e recirculação (a curtida voltando como dado).</p></div>`;
   R.innerHTML = html;
 }
 $("#paraRegra").onclick = ()=>ir(4);
