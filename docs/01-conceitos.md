@@ -81,7 +81,27 @@ O efeito real das bolhas é disputado. Pesquisadores sérios discordam. O resumo
 
 Por isso o site é um modelo de brinquedo: mostra um mecanismo possível, não mede nenhuma plataforma real.
 
-## 1.8 Para checar se você entendeu
+## 1.8 Em linguagem de economia
+
+O mesmo mecanismo tem nome em economia. A tabela liga cada conceito ao que acontece no projeto.
+
+| Conceito | Em uma frase | No projeto |
+|---|---|---|
+| Economia da atenção | A atenção é o recurso escasso que as plataformas disputam e vendem a anunciantes. | O feed existe para prender você; cada clique vale receita. |
+| Capitalismo de vigilância (Zuboff) | O comportamento das pessoas vira dado, e o dado vira previsão que se vende. | Suas curtidas são a matéria-prima do sistema. |
+| Capitalismo de plataforma (Srnicek) | Empresas que funcionam como infraestrutura entre usuários, anunciantes e criadores. | O sistema decide o que cada lado vê. |
+| Incentivo | As pessoas e as empresas respondem ao que é recompensado. | A métrica recompensa o que gera clique, e o criador aprende isso. |
+| Retornos crescentes e lock-in (Arthur) | Quanto mais algo é escolhido, mais vantajoso fica, e uma vantagem inicial pode travar o resultado. | γ maior que 1: o tema que sai na frente tende a ficar lá. |
+| Trade-off e custo de oportunidade | Ganhar uma coisa exige abrir mão de outra. | Mais diversidade custa curtidas, e o custo depende do usuário. |
+| Externalidade negativa | Um custo que recai sobre terceiros e não entra na conta de quem o causa. | A bolha prejudica o debate público, mas a plataforma não paga por isso. |
+| Lei de Goodhart | Quando uma medida vira meta, deixa de ser uma boa medida. | O engajamento deixa de medir interesse quando vira o alvo. |
+
+Dois pontos para discutir:
+
+1. Em retornos crescentes, a diferença entre γ = 1 e γ = 2 é grande. Com γ = 1 (a chance é proporcional às curtidas), a diversidade se mantém perto de 0,7. Com γ = 2, o feed colapsa. A passagem de "rendimentos constantes" para "crescentes" é o que cria o lock-in.
+2. A pergunta "qual regra a plataforma adotaria sozinha?" tem resposta diferente de "qual regra é melhor para a sociedade?". Quando as duas divergem, entra o debate sobre regulação e transparência.
+
+## 1.9 Para checar se você entendeu
 
 1. Por que o sistema pode criar uma bolha sem que ninguém tenha programado isso?
 2. Qual é a diferença entre "o que você curtiu" e "o que você viu"?

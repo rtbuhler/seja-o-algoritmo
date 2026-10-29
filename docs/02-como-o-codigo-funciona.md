@@ -202,4 +202,21 @@ O código mostrado em "Sob o capô" é gerado com `montaTemas.toString()`: o Jav
 3. Abra o navegador e aperte `F12` para ver o console. Digite `CFG` e aperte Enter.
 4. Digite `montaTemas([1,1,1,1,1], "A", 6, Math.random)` e veja um feed sair, como lista de números de 0 a 4.
 
+## 2.10 O enfoque econômico no código
+
+Quatro funções do `index.html` implementam o enfoque econômico do passo 4 e do passo 5:
+
+| Função | O que faz |
+|---|---|
+| `contaDominancia(p)` | Roda 200 simulações com o usuário `p` e conta qual tema domina o feed nas últimas 20 rodadas. Alimenta o "prêmio de engajamento". |
+| `rodaPremio()` | Compara o usuário neutro com o usuário reativo (`USU_REATIVO`, com 36% de chance de clique em "Polêmica"). |
+| `rodaFronteira()` | Testa 64 combinações de γ, ε e teto (a constante `GRADE`) e calcula a receita fictícia e a diversidade final de cada uma. Marca os pontos que ninguém supera nas duas medidas (o conjunto de Pareto). |
+| `novaAuditoria()` | Escolhe uma regra escondida, gera 30 rodadas de feeds e pede que a pessoa descubra qual é. |
+
+Detalhes úteis:
+
+- `rodaFronteira` usa a configuração `CFG.Y`, que é reescrita a cada combinação, e reaproveita `mediaSims`, a mesma função do resto do site.
+- Um ponto está no conjunto de Pareto quando nenhum outro ponto tem, ao mesmo tempo, receita maior ou igual e diversidade maior ou igual, com pelo menos uma das duas estritamente maior.
+- O site e o script em Python usam o mesmo gerador de números aleatórios (`mulberry32`) e sorteiam na mesma ordem, então os resultados são idênticos. Veja `docs/05-resultados-do-resumo.md`.
+
 Próximo documento: [`03-experimentos-e-desafios.md`](03-experimentos-e-desafios.md).

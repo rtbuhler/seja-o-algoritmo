@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "Se você usar este projeto, cite-o como abaixo."
+title: "Seja o algoritmo da sua própria bolha: demonstração interativa sobre incentivos econômicos e algoritmos nas plataformas digitais"
+type: software
+version: 1.0.0
+date-released: 2026-10-29
+license: MIT
+repository-code: "https://github.com/rtbuhler/seja-o-algoritmo"
+url: "https://rtbuhler.github.io/seja-o-algoritmo/"
+abstract: >-
+  Demonstração interativa e de código aberto que permite observar como um sistema
+  de recomendação que otimiza o engajamento, combinado às escolhas dos usuários,
+  estreita o feed e favorece bolhas informacionais. Inclui simulações reproduzíveis
+  em JavaScript e Python, um painel do custo econômico da diversidade e
+  documentação didática. O modelo é didático e não mede plataformas reais.
+keywords:
+  - bolhas informacionais
+  - sistemas de recomendação
+  - desinformação
+  - economia da atenção
+  - educação
+authors:
+  - family-names: Buhler
+    given-names: Rudolf Theoderich
+    affiliation: "Instituto Mauá de Tecnologia"

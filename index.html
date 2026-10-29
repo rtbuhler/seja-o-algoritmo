@@ -138,6 +138,13 @@ pre.code{background:#00141f;color:#d6f5ff;padding:12px;overflow:auto;font-size:.
 table.mini th,table.mini td{padding:4px 6px;font-size:.82rem}
 .chal{padding-left:1.1rem}.chal li{margin:.4rem 0;font-family:Lato,system-ui,sans-serif;font-size:.92rem}
 .chal .ok{color:var(--ok);font-weight:700}
+
+.bl.mini{width:13px;height:13px;font-size:8px;border-radius:2px}
+.blocos.mini{gap:2px}
+.hist.audit{max-height:330px;overflow:auto;gap:3px 8px;padding-right:6px}
+details.econ{margin:12px 0}
+details.econ summary{font-family:Montserrat,Lato,sans-serif}
+details.econ label{font-size:.9rem}
 </style>
 </head>
 <body>
@@ -270,6 +277,28 @@ table.mini th,table.mini td{padding:4px 6px;font-size:.82rem}
       </div>
     </div>
     
+
+    <details class="econ">
+      <summary>Enfoque econômico: um pequeno prêmio de engajamento muda o feed?</summary>
+      <p>Na vida real, conteúdo emocional e polêmico tende a render mais cliques. Aqui damos a "Polêmica" 36% de chance de clique, contra 30% dos outros temas (um prêmio de 20%), e rodamos 200 simulações de 100 rodadas na regra A. Depois contamos qual tema domina o feed no fim.</p>
+      <button class="primary" id="rodarPremio">Rodar a simulação</button>
+      <div id="premio" aria-live="polite" style="margin-top:10px"></div>
+      <p class="small muted">"Polêmica" representa conteúdo caça-clique e serve de aproximação para desinformação. As manchetes são fictícias e não afirmam nada falso.</p>
+    </details>
+
+    <details class="econ">
+      <summary>Enfoque econômico: quanto custa a diversidade? (painel do negócio)</summary>
+      <p>Uma plataforma que vive de anúncios ganha com cada clique. Este painel testa 64 regras (variando γ, ε e teto) e mostra, para cada uma, a receita fictícia e a diversidade final do feed. Os círculos vazios são os melhores equilíbrios: nenhuma outra regra dá, ao mesmo tempo, mais receita e mais diversidade.</p>
+      <div class="row">
+        <label>Usuário <select id="usuFront" style="font:inherit;padding:8px"><option value="fiel">fiel a um tema</option><option value="neutro">neutro</option><option value="reativo">reativo à polêmica</option></select></label>
+        <label>Receita fictícia por clique (R$) <input type="number" id="precoClique" value="0.20" min="0.01" step="0.01" style="width:84px;font:inherit;padding:8px"></label>
+        <button class="primary" id="rodarFronteira">Calcular</button>
+      </div>
+      <canvas id="graficoFronteira" role="img" aria-label="Gráfico de pontos: receita fictícia por 1.000 posts no eixo horizontal e diversidade final do feed no eixo vertical, uma ponto para cada regra testada." hidden style="margin-top:10px"></canvas>
+      <div class="legend" id="legFront"></div>
+      <div class="card hl" id="leituraFront" hidden></div>
+    </details>
+
     <div class="only-nerd card nerd-box">
       <h3 style="margin-top:0">Laboratório (modo nerd)</h3>
       <p>Roda 40 simulações de 100 rodadas com os parâmetros do painel (<span id="labParams"></span>) e compara com a regra A, para um usuário neutro e para um usuário fiel a um tema.</p>
@@ -284,6 +313,13 @@ table.mini th,table.mini td{padding:4px 6px;font-size:.82rem}
         <li id="d2">Deixe o tema dominante do usuário fiel abaixo de 60% do feed mantendo pelo menos 90% do engajamento da regra A. <span class="st"></span></li>
         <li id="d3">Faça o feed do usuário neutro colapsar mais rápido que na regra A (compare a rodada 20). <span class="st"></span></li>
       </ol>
+    </div>
+
+    <div class="only-nerd card nerd-box">
+      <h3 style="margin-top:0">Resultados do resumo (reprodutível)</h3>
+      <p>Protocolo: 100 rodadas, feed de 10 posts, média de 40 simulações com sementes 0 a 39. O script <code>python/reproduzir_resumo.py</code> dá os mesmos números.</p>
+      <button class="primary" id="rodarResumo">Calcular</button>
+      <div id="resumoRes" style="margin-top:8px"></div>
     </div>
     <div class="row" style="margin-top:14px"><button class="primary" id="paraPensar">Continuar</button></div>
     <p class="small muted">Você acabou de fazer o que cientistas de dados fazem: testar regras com simulações. Na Mauá, quem estuda <a href="https://www.maua.br/graduacao/ciencia-computacao?utm_source=bolhas-demo&utm_medium=site&utm_campaign=vestibular" target="_blank" rel="noopener">Ciência da Computação</a> ou <a href="https://www.maua.br/graduacao/sistemas-informacao?utm_source=bolhas-demo&utm_medium=site&utm_campaign=vestibular" target="_blank" rel="noopener">Sistemas de Informação</a> aprende a trabalhar com tecnologias como estas.</p>
@@ -300,11 +336,13 @@ table.mini th,table.mini td{padding:4px 6px;font-size:.82rem}
       <li>Quem escolheu a sua bolha: você, o sistema ou os dois? Como saber a diferença?</li>
       <li>Se a regra C reduz bolhas, por que uma plataforma que vive de anúncios hesitaria em adotá-la?</li>
       <li>Se você pudesse escolher a métrica do seu feed, o que otimizaria no lugar do engajamento?</li>
+      <li>Quem paga o custo de uma bolha informacional: a plataforma, o usuário ou a sociedade?</li>
+      <li>Que regra uma plataforma adotaria sozinha, e que regra só existiria com regulação ou pressão externa?</li>
     </ol>
 
     <h3>De onde vem essa ideia</h3>
     <div class="card">
-      <p>Este site se apoia no artigo <em>Economia da desinformação e sistemas algorítmicos</em> (Angelo e Nogueira, RICEM 2026), que usa o modelo de três fases de Jesus-Silva (2026):</p>
+      <p>Este site se apoia no artigo <em>Economia da desinformação e sistemas algorítmicos</em> (Angelo e Nogueira, RICEM 2026), que usa o modelo de três fases de Jesus-Silva (2026) e se apoia nos conceitos de capitalismo de vigilância (Zuboff) e de capitalismo de plataforma (Srnicek):</p>
       <div class="tri">
         <div><b>1 · Criação</b>Conteúdo feito para gerar engajamento. Aqui: as manchetes, algumas em estilo caça-clique.</div>
         <div><b>2 · Disseminação</b>A plataforma coleta dados e ordena o feed. Aqui: o sorteio por curtidas.</div>
@@ -332,9 +370,27 @@ table.mini th,table.mini td{padding:4px 6px;font-size:.82rem}
         <dt>Câmara de eco</dt><dd>Ambiente em que pessoas com ideias parecidas repetem e validam as mesmas coisas; depende também das escolhas do usuário.</dd>
         <dt>Efeito de verdade ilusória</dt><dd>Ver algo repetidas vezes aumenta a sensação de que é verdade.</dd>
         <dt>Entropia (diversidade)</dt><dd>Medida de quão espalhado está o feed entre os temas: 1 = muito variado, 0 = um tema só.</dd>
+        <dt>Capitalismo de vigilância (Zuboff)</dt><dd>Modelo em que o comportamento das pessoas vira dado, e o dado vira previsão que se vende. Aqui, as suas curtidas são a matéria-prima do sistema.</dd>
+        <dt>Capitalismo de plataforma (Srnicek)</dt><dd>Empresas que funcionam como infraestrutura entre usuários, anunciantes e criadores, e lucram com os dados dessas interações.</dd>
+        <dt>Economia da atenção</dt><dd>A atenção das pessoas é o recurso escasso que as plataformas disputam e vendem a anunciantes.</dd>
+        <dt>Retornos crescentes e lock-in (Arthur)</dt><dd>Quanto mais algo é escolhido, mais vantajoso ele fica, e uma pequena vantagem inicial pode travar o resultado. No modelo, acontece quando γ é maior que 1.</dd>
       </dl>
     </details>
 
+
+
+    <details class="econ" id="auditor">
+      <summary>Projetar, auditar e governar</summary>
+      <p>Três tarefas diferentes cuidam de um sistema como este:</p>
+      <ul>
+        <li>Projetar: escolher a métrica, as regras e os dados do sistema (o que você fez nos passos 2 a 4).</li>
+        <li>Auditar: descobrir o que um sistema faz olhando só para o resultado, sem ver o código.</li>
+        <li>Governar: decidir quem pode ver, medir e mudar a regra, e quem responde pelo efeito dela.</li>
+      </ul>
+      <p>Experimente a segunda tarefa:</p>
+      <button class="primary" id="auditar">Começar o desafio do auditor</button>
+      <div id="auditoria" aria-live="polite" style="margin-top:10px"></div>
+    </details>
 
     <div class="only-nerd card nerd-box">
       <h3 style="margin-top:0">Replique e explore</h3>
@@ -431,13 +487,15 @@ const CFG = {
   A: {gama:2, eps:0,    teto:null},
   B: {gama:2, eps:0.10, teto:null},
   C: {gama:2, eps:0,    teto:0.4},
-  X: {gama:2, eps:0,    teto:null}
+  X: {gama:2, eps:0,    teto:null},
+  Y: {gama:2, eps:0,    teto:null}   // usada pelo painel do negócio
 };
 let nerd = false;
 const modoJogo = () => nerd ? "X" : "A";
 const PERFIL_PADRAO = [0.30,0.30,0.31,0.30,0.36];
 const USU_NEUTRO = [0.30,0.30,0.30,0.30,0.30];
 const USU_FIEL   = [0.75,0.15,0.15,0.15,0.15];
+const USU_REATIVO = [0.30,0.30,0.30,0.30,0.36];   // "Polêmica" rende 20% mais cliques
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const fmt = x => x.toFixed(2).replace(".", ",");
@@ -530,8 +588,9 @@ const nVotos = () => st.votos.reduce((a,b)=>a+b,0);
 function barra(nome, cor, frac, val){
   return `<div class="bar"><span class="name">${nome}</span><span class="track"><span class="fill" style="width:${Math.round(frac*100)}%;background:${cor}"></span></span><span class="val">${val}</span></div>`;
 }
-function blocos(temas){
-  return `<span class="blocos">${temas.map(t=>`<span class="bl" style="background:${TEMAS[t].cor}" title="${TEMAS[t].nome}">${TEMAS[t].ico}</span>`).join("")}</span>`;
+function blocos(temas, mini){
+  const m = mini ? " mini" : "";
+  return `<span class="blocos${m}">${temas.map(t=>`<span class="bl${m}" style="background:${TEMAS[t].cor}" title="${TEMAS[t].nome}">${TEMAS[t].ico}</span>`).join("")}</span>`;
 }
 function histHTML(){
   if(!st.hist.length) return `<span class="small muted" style="grid-column:1/-1">Nenhuma rodada concluída ainda.</span>`;
@@ -705,6 +764,7 @@ function revela(){
     <div class="card"><p>É um ciclo de realimentação (<em>feedback loop</em>):</p>
       <div class="loop"><span>Você curte</span><i>→</i><span>O sistema conta</span><i>→</i><span>Recalcula o ranking</span><i>→</i><span>Novo feed</span><i>↺</i></div>
       <p>O sistema usa o resultado das próprias recomendações como dado para decidir as próximas. Pequenas vantagens do início crescem sozinhas. Ninguém programou "faça uma bolha": bastou a regra <em>"mostre mais do que gerou curtida"</em>.</p>
+      <p class="small muted">Economistas chamam essa dinâmica de retornos crescentes: quanto mais algo é escolhido, mais vantajoso ele fica, e uma pequena vantagem inicial pode travar o resultado (Arthur, 1989). No modelo, isso acontece quando γ é maior que 1.</p>
       <p class="small muted">Este é o ciclo de três fases do artigo dos alunos: criação (as manchetes feitas para render), disseminação (o ranking) e recirculação (a curtida voltando como dado).</p></div>`;
   R.innerHTML = html;
 }
@@ -777,7 +837,7 @@ function desenhaGrafico(cv=$("#grafico"), cvs=curvas, md=MODOS, an=anota){
   }
 }
 $("#rodarReplay").onclick = rodaReplay;
-window.addEventListener("resize", ()=>{ if(passo===4){ if(curvas) desenhaGrafico(); if(labCurvas) desenhaGrafico($("#graficoLab"), labCurvas, labModos, null); } if(passo===2) desenhaDonut(donutAtual); });
+window.addEventListener("resize", ()=>{ if(passo===4){ if(curvas) desenhaGrafico(); if(labCurvas) desenhaGrafico($("#graficoLab"), labCurvas, labModos, null); } if(passo===4 && fronteiraDados) desenhaFronteira(); if(passo===2) desenhaDonut(donutAtual); });
 
 /* ---- experimento 2x2 ---- */
 function rodaDoisPorDois(){
@@ -935,6 +995,147 @@ function rodaLab(){
 }
 $("#rodarLab").onclick = rodaLab;
 
+/* =============== ENFOQUE ECONÔMICO =============== */
+const GRADE = {gama:[0,1,2,3], eps:[0,0.1,0.2,0.3], teto:[null,0.6,0.4,0.3]};
+const moeda = v => "R$ " + v.toFixed(2).replace(".", ",");
+const descCf = c => `γ=${c.gama}, ε=${Math.round(c.eps*100)}%, teto=${c.teto ? Math.round(c.teto*100)+"%" : "sem teto"}`;
+
+// Em quantas simulações (sementes 0 a 199) cada tema domina o feed nas últimas 20 rodadas.
+function contaDominancia(p){
+  const N = 200, vit = Array(K).fill(0); let parte = 0;
+  for(let s=0;s<N;s++){
+    const r = simula(p, "A", R_SIM, TAM_SIM, s), tot = r.fim.reduce((a,b)=>a+b,0);
+    vit[r.fim.indexOf(Math.max(...r.fim))]++;
+    parte += r.fim[4]/tot/N;
+  }
+  return {vit: vit.map(v=>v/N), parte};
+}
+function rodaPremio(){
+  const sem = contaDominancia(USU_NEUTRO), com = contaDominancia(USU_REATIVO);
+  const bloco = (titulo, r)=>`<div class="card"><p class="small muted" style="margin-top:0">${titulo}</p>${TEMAS.map((t,i)=>barra(`${t.ico} ${t.nome}`, t.cor, r.vit[i], pct(r.vit[i]))).join("")}</div>`;
+  $("#premio").innerHTML = `<div class="grid2">${bloco("Sem prêmio (todos com 30%): em quantas simulações cada tema domina o feed", sem)}${bloco("Com prêmio (\"Polêmica\" com 36%): em quantas simulações cada tema domina o feed", com)}</div>
+    <div class="card hl"><p style="margin:0">Com o prêmio de 20%, "Polêmica" domina o feed em ${pct(com.vit[4])} das simulações, contra ${pct(sem.vit[4])} quando todos rendem igual. A parcela média de "Polêmica" no feed passa de ${pct(sem.parte)} para ${pct(com.parte)}. É uma tendência: qual tema vence ainda depende muito do acaso do início, mas a vantagem de engajamento pesa a favor do conteúdo caça-clique.</p></div>`;
+}
+
+let fronteiraDados = null;
+function rodaFronteira(){
+  const usu = $("#usuFront").value, p = {neutro:USU_NEUTRO, fiel:USU_FIEL, reativo:USU_REATIVO}[usu];
+  const v = parseFloat($("#precoClique").value), preco = v > 0 ? v : 0.2;
+  const pts = [];
+  GRADE.gama.forEach(g=>GRADE.eps.forEach(e=>GRADE.teto.forEach(tt=>{
+    CFG.Y = {gama:g, eps:e, teto:tt};
+    const m = mediaSims(p, "Y", R_SIM, TAM_SIM, 20, 0);
+    pts.push({cf:{gama:g, eps:e, teto:tt}, div:m.div[R_SIM-1], rec:m.eng*1000*preco});
+  })));
+  const igual = (a,b)=>a.gama===b.gama && a.eps===b.eps && a.teto===b.teto;
+  pts.forEach(a=>{
+    a.pareto = !pts.some(b=>b!==a && b.rec>=a.rec-1e-9 && b.div>=a.div-1e-9 && (b.rec>a.rec+1e-9 || b.div>a.div+1e-9));
+    a.marca = igual(a.cf,CFG.A) ? "A" : igual(a.cf,CFG.B) ? "B" : igual(a.cf,CFG.C) ? "C" : "";
+  });
+  fronteiraDados = {pts};
+  $("#graficoFronteira").hidden = false;
+  desenhaFronteira();
+  $("#legFront").innerHTML = `<span><i style="background:var(--c1)"></i>A · só engajamento</span><span><i style="background:var(--c2)"></i>B · com exploração</span><span><i style="background:var(--c4)"></i>C · com teto de 40%</span><span>○ melhores equilíbrios</span><span>· outras regras</span>`;
+  const A = pts.find(x=>x.marca==="A"), C = pts.find(x=>x.marca==="C");
+  const corte = pts.filter(x=>x.rec >= 0.9*A.rec).sort((a,b)=>(b.div-a.div) || (b.rec-a.rec))[0];
+  const queda = (1 - C.rec/A.rec)*100;
+  let h = `<p style="margin-top:0">Regra A (só engajamento): receita de ${moeda(A.rec)} por 1.000 posts e diversidade final de ${fmt(A.div)}.</p>
+    <p>Regra C (teto de 40%): receita de ${moeda(C.rec)} (${queda>=0 ? "queda" : "alta"} de ${Math.abs(Math.round(queda))}%) e diversidade de ${fmt(C.div)}.${queda >= 3 ? ` Em reais, a diversidade custa ${moeda(A.rec-C.rec)} a cada 1.000 posts.` : ""}</p>`;
+  h += Math.abs(queda) < 3
+    ? `<p>Para este usuário, a diversidade quase não custa receita. O custo aparece quando o gosto é concentrado: troque para "fiel a um tema".</p>`
+    : `<p>O melhor equilíbrio que mantém pelo menos 90% da receita de A usa ${descCf(corte.cf)}: receita de ${moeda(corte.rec)} e diversidade de ${fmt(corte.div)}.</p>`;
+  h += `<p class="small muted" style="margin-bottom:0">Valores fictícios, médias de 20 simulações por regra, com a receita proporcional às curtidas.</p>`;
+  $("#leituraFront").hidden = false;
+  $("#leituraFront").innerHTML = h;
+}
+function desenhaFronteira(){
+  const cv = $("#graficoFronteira"), d = fronteiraDados;
+  if(!d || !cv || cv.hidden) return;
+  const dpr = window.devicePixelRatio||1, w = cv.clientWidth, h = cv.clientHeight; if(!w) return;
+  cv.width = w*dpr; cv.height = h*dpr;
+  const g = cv.getContext("2d"); g.scale(dpr,dpr); g.clearRect(0,0,w,h);
+  const cs = getComputedStyle(document.documentElement), ink = cs.getPropertyValue("--ink").trim();
+  const L=56, R=14, T=14, B=46, pw=w-L-R, ph=h-T-B;
+  const xs = d.pts.map(q=>q.rec), mn = Math.min(...xs), mx = Math.max(...xs), pad = (mx-mn)*0.08 || 1;
+  const x0 = mn-pad, x1 = mx+pad;
+  const X = v=>L+pw*((v-x0)/(x1-x0)), Y = v=>T+ph*(1-v);
+  g.font = "13px Lato,system-ui,sans-serif"; g.fillStyle = ink; g.strokeStyle = ink + "33"; g.lineWidth = 1;
+  for(let v=0; v<=1.001; v+=0.25){
+    g.beginPath(); g.moveTo(L,Y(v)); g.lineTo(w-R,Y(v)); g.stroke();
+    g.textAlign = "right"; g.fillText(fmt(v), L-6, Y(v)+4);
+  }
+  g.textAlign = "center";
+  for(let i=0;i<=4;i++){ const v = x0+(x1-x0)*i/4; g.fillText(v.toFixed(1).replace(".",","), X(v), T+ph+17); }
+  g.fillText("receita fictícia por 1.000 posts (R$)", L+pw/2, h-5);
+  g.save(); g.translate(13, T+ph/2); g.rotate(-Math.PI/2); g.fillText("diversidade final", 0, 0); g.restore();
+  const par = d.pts.filter(q=>q.pareto).sort((a,b)=>a.rec-b.rec);
+  g.setLineDash([4,4]); g.strokeStyle = ink; g.beginPath();
+  par.forEach((q,i)=>{ i ? g.lineTo(X(q.rec),Y(q.div)) : g.moveTo(X(q.rec),Y(q.div)); }); g.stroke(); g.setLineDash([]);
+  d.pts.forEach(q=>{
+    if(q.marca) return;
+    g.beginPath(); g.arc(X(q.rec), Y(q.div), q.pareto ? 5 : 3, 0, 2*Math.PI);
+    if(q.pareto){ g.strokeStyle = ink; g.lineWidth = 2; g.stroke(); } else { g.fillStyle = ink + "88"; g.fill(); }
+  });
+  const cor = {A:"--c1", B:"--c2", C:"--c4"};
+  d.pts.filter(q=>q.marca).forEach(q=>{
+    g.beginPath(); g.arc(X(q.rec), Y(q.div), 8, 0, 2*Math.PI); g.fillStyle = cs.getPropertyValue(cor[q.marca]).trim(); g.fill();
+    g.fillStyle = "#000"; g.font = "700 12px Lato,system-ui,sans-serif"; g.textAlign = "center"; g.fillText(q.marca, X(q.rec), Y(q.div)+4);
+  });
+}
+
+function rodaResumo(){
+  const f = (p,m)=>mediaSims(p, m, 100, 10, 40, 0);
+  const nA = f(USU_NEUTRO,"A"), nC = f(USU_NEUTRO,"C"), fA = f(USU_FIEL,"A"), fC = f(USU_FIEL,"C");
+  const sem = contaDominancia(USU_NEUTRO), com = contaDominancia(USU_REATIVO);
+  $("#resumoRes").innerHTML = `<table class="mini"><tbody>
+    <tr><td>Diversidade, usuário neutro, só engajamento</td><td>rodada 1: ${fmt(nA.div[0])}<br>rodada 100: ${fmt(nA.div[99])}</td></tr>
+    <tr><td>Diversidade, usuário neutro, teto de 40%</td><td>rodada 100: ${fmt(nC.div[99])}</td></tr>
+    <tr><td>Curtidas por 100 posts, usuário fiel</td><td>só engajamento: ${Math.round(fA.eng*100)}<br>teto de 40%: ${Math.round(fC.eng*100)}</td></tr>
+    <tr><td>Prêmio de engajamento (200 simulações)</td><td>"Polêmica" domina em ${pct(com.vit[4])} (sem prêmio: ${pct(sem.vit[4])})</td></tr>
+  </tbody></table>`;
+}
+
+/* ---- desafio do auditor ---- */
+let aud = null;
+const ROT_REGRA = {A:"A · só engajamento", B:"B · com exploração", C:"C · com teto de diversidade"};
+const PISTA = {
+  A: "Um único tema passa a ocupar quase todo o feed e fica lá.",
+  B: "Um tema domina, mas de vez em quando aparecem outros temas, sorteados sem olhar o histórico: sinal de exploração.",
+  C: "Nenhum tema passa de 4 em cada 10 posts em nenhum feed: sinal de teto."
+};
+function novaAuditoria(){
+  const modo = ["A","B","C"][Math.floor(Math.random()*3)];
+  const rnd = mulberry32((Math.random()*4294967296)>>>0), c = Array(K).fill(1), hist = [];
+  for(let r=0;r<30;r++){
+    const feed = montaTemas(c, modo, TAM_SIM, rnd); hist.push(feed);
+    feed.forEach(tm=>{ if(rnd()<0.30) c[tm]++; });
+  }
+  aud = {modo, hist, resp:null};
+  desenhaAuditoria();
+}
+function desenhaAuditoria(){
+  const box = $("#auditoria");
+  if(!aud){ box.innerHTML = ""; return; }
+  const maxFeed = Math.max(...aud.hist.map(fd=>Math.max(...contagem(fd))));
+  let h = `<p>Você é o auditor. Não vê o código nem os pesos: só os feeds de 30 rodadas de um usuário que curte todos os temas igualmente. Qual regra o sistema usa?</p>
+    <div class="card"><div class="hist audit">${aud.hist.map((fd,i)=>`<span class="r">R${i+1}</span>${blocos(fd,true)}`).join("")}</div></div>`;
+  if(aud.resp === null){
+    h += `<div class="row">${["A","B","C"].map(k=>`<button class="ghost" data-r="${k}">${ROT_REGRA[k]}</button>`).join("")}</div>`;
+  } else {
+    const ok = aud.resp === aud.modo;
+    h += `<div class="card hl"><p style="margin:0">${ok ? "Acertou." : "Não foi dessa vez."} A regra era ${ROT_REGRA[aud.modo]}. Pista: ${PISTA[aud.modo]} Maior número de posts de um mesmo tema em um feed: ${maxFeed} de 10.</p></div>
+      <p class="small muted">Você só conseguiu auditar porque pôde ver os feeds. Sem acesso aos dados, quem está de fora não descobre a regra. Decidir quem pode ver e medir é uma questão de governança.</p>
+      <button class="primary" id="outraAud">Outro desafio</button>`;
+  }
+  box.innerHTML = h;
+  box.querySelectorAll("[data-r]").forEach(b=>b.onclick=()=>{ aud.resp = b.dataset.r; desenhaAuditoria(); });
+  const o = $("#outraAud"); if(o) o.onclick = novaAuditoria;
+}
+$("#rodarPremio").onclick = rodaPremio;
+$("#rodarFronteira").onclick = rodaFronteira;
+$("#rodarResumo").onclick = rodaResumo;
+$("#auditar").onclick = novaAuditoria;
+
 /* =============== MENSAGEM PARA QUEM ABRE O CONSOLE =============== */
 console.log("%cSeja o algoritmo%c\nVocê abriu o console: gostamos de gente curiosa. O código inteiro está em " + REPO + "\nQuer aprender a construir sistemas como este? https://www.maua.br/vestibular?utm_source=bolhas-demo&utm_medium=console&utm_campaign=vestibular",
   "font:700 18px Montserrat,sans-serif;color:#004587", "font:14px Lato,sans-serif");
@@ -947,6 +1148,7 @@ function aplicaTema(tema, salvar){
   if(salvar){ try{ localStorage.setItem("tema", tema); }catch(e){} }
   rotuloTema();
   if(passo===4){ if(curvas) desenhaGrafico(); if(labCurvas) desenhaGrafico($("#graficoLab"), labCurvas, labModos, null); }
+  if(passo===4 && fronteiraDados) desenhaFronteira();
   if(passo===2) desenhaDonut(donutAtual);
 }
 $("#btnTema").onclick = ()=>aplicaTema(temaAtual()==="dark" ? "light" : "dark", true);

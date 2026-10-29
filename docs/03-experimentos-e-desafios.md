@@ -61,6 +61,37 @@ python python/simulacao_feedback_loop.py --usuario fiel   --teto 0.4
 
 Este é o experimento 2×2 do passo 4 do site.
 
+## Experimento 5: um pequeno prêmio muda o resultado?
+
+*Pergunta:* se o conteúdo caça-clique rende só 20% mais cliques, ele passa a dominar o feed?
+
+*Como fazer (site):* passo 4, seção "Enfoque econômico: um pequeno prêmio de engajamento muda o feed?".
+*Como fazer (Python):* `python python/reproduzir_resumo.py`
+
+*O que observar:* "Polêmica" domina o feed em cerca de 28% das simulações, contra 20% quando todos rendem igual. A vantagem existe, mas está longe de ser garantida.
+
+*Para pensar:* o que um prêmio de 20% muda no incentivo de quem cria conteúdo? E se o criador puder ver que "Polêmica" rende mais?
+
+## Experimento 6: quanto custa a diversidade?
+
+*Pergunta:* qual é o custo, em receita, de cada nível de diversidade?
+
+*Como fazer (site):* passo 4, seção "Enfoque econômico: quanto custa a diversidade?". Rode o painel para o usuário fiel e depois para o neutro.
+
+*O que observar:* para o usuário fiel, o teto de 40% derruba a receita em cerca de 47% e a curva é íngreme: perder pouca receita compra pouca diversidade. Para o neutro, a diversidade quase não custa receita.
+
+*Para pensar:* a fronteira diz o que é possível, não o que é desejável. Quem escolhe o ponto da curva: a plataforma, o usuário ou a lei? Quanto vale, em reais, a diversidade do debate público?
+
+## Atividade: o desafio do auditor
+
+*Pergunta:* dá para descobrir a regra de um sistema olhando só o resultado?
+
+*Como fazer (site):* passo 5, seção "Projetar, auditar e governar". Veja os feeds de 30 rodadas e escolha entre as regras A, B e C.
+
+*O que observar:* a regra A deixa um tema ocupando quase todo o feed; a B tem um tema dominante com aparições ocasionais de outros; a C nunca passa de 4 em 10 posts do mesmo tema. Na prática, a diferença entre B e A pode ser difícil de notar nas primeiras rodadas.
+
+*Para pensar:* você só conseguiu auditar porque podia ver os feeds. Quem de fora de uma plataforma tem acesso a esse tipo de dado? Quem deveria ter?
+
 ## Desafios do laboratório (modo nerd)
 
 O laboratório do passo 4 tem três desafios, com verificação automática (✔ concluído):

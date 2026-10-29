@@ -1,6 +1,8 @@
 """Simulação didática de feedback loop em um recomendador de feed.
 
 É a mesma ideia do site (index.html), escrita em Python para você ler, rodar e modificar.
+Usa o mesmo gerador de números aleatórios do site (mulberry32) e a mesma ordem de sorteios,
+então, com as mesmas sementes, os resultados são IGUAIS aos do site.
 
 O sistema só faz uma coisa: dá mais espaço aos temas que já receberam mais curtidas.
 Ninguém programou "faça uma bolha". Mesmo assim, o feed se estreita, porque a
@@ -16,35 +18,61 @@ Uso (só biblioteca padrão; matplotlib é opcional, para o gráfico):
     python simulacao_feedback_loop.py --csv resultado.csv  # salva a diversidade por rodada
     python simulacao_feedback_loop.py --grafico            # salva simulacao.png (precisa de matplotlib)
 
-Observação: o site usa outro gerador de números aleatórios (mulberry32), então os
-números aqui são parecidos, mas não idênticos aos do site.
+Para reproduzir os números do resumo do trabalho, rode reproduzir_resumo.py.
 """
 import argparse
 import csv
 import math
-import random
 
 TEMAS = ["Esporte", "Ciência", "Política", "Celebridades", "Polêmica"]
 K = len(TEMAS)
 
 # Probabilidade de o usuário clicar em cada tema.
 USUARIOS = {
-    "neutro": [0.30, 0.30, 0.30, 0.30, 0.30],   # gosta de tudo igualmente
-    "fiel": [0.75, 0.15, 0.15, 0.15, 0.15],     # gosta principalmente de Esporte
-    "padrao": [0.30, 0.30, 0.31, 0.30, 0.36],   # quase neutro; "Polêmica" engaja um pouco mais
+    "neutro": [0.30, 0.30, 0.30, 0.30, 0.30],    # gosta de tudo igualmente
+    "fiel": [0.75, 0.15, 0.15, 0.15, 0.15],      # gosta principalmente de Esporte
+    "reativo": [0.30, 0.30, 0.30, 0.30, 0.36],   # "Polêmica" rende 20% mais cliques
 }
+
+M32 = 0xFFFFFFFF
+
+
+def mulberry32(semente):
+    """Gerador de números aleatórios com semente (o mesmo do site). Devolve uma função sem argumentos."""
+    a = semente & M32
+
+    def rnd():
+        nonlocal a
+        a = (a + 0x6D2B79F5) & M32
+        t = ((a ^ (a >> 15)) * (1 | a)) & M32
+        t = ((t + (((t ^ (t >> 7)) * (61 | t)) & M32)) & M32) ^ t
+        return ((t ^ (t >> 14)) & M32) / 4294967296
+
+    return rnd
 
 
 def entropia_normalizada(contagem):
     """Diversidade do feed: 1.0 = todos os temas igualmente presentes; 0.0 = um tema só."""
     total = sum(contagem)
-    ps = [c / total for c in contagem if c > 0]
-    return abs(-sum(p * math.log(p) for p in ps) / math.log(len(contagem)))
+    h = 0.0
+    for c in contagem:
+        if c > 0:
+            p = c / total
+            h -= p * math.log(p)
+    return abs(h / math.log(len(contagem)))
 
 
 def sorteia(pesos, rnd):
-    """Sorteia um índice com probabilidade proporcional aos pesos."""
-    return rnd.choices(range(len(pesos)), weights=pesos)[0]
+    """Roleta: sorteia um índice com probabilidade proporcional ao peso."""
+    total = 0.0
+    for p in pesos:
+        total += p
+    r = rnd() * total
+    for i, p in enumerate(pesos):
+        r -= p
+        if r <= 0:
+            return i
+    return len(pesos) - 1
 
 
 def monta_feed(cliques, gama, epsilon, teto, n, rnd):
@@ -55,12 +83,12 @@ def monta_feed(cliques, gama, epsilon, teto, n, rnd):
     epsilon: fração do feed sorteada entre todos os temas (exploração).
     teto:    fração máxima do feed que um tema pode ocupar (None = sem teto).
     """
-    pesos = [c ** gama for c in cliques]
-    limite = max(1, int(teto * n)) if teto else None
+    pesos = [float(c) ** gama for c in cliques]
+    limite = max(1, math.floor(teto * n)) if teto else None
     feed, cont = [], [0] * K
     for _ in range(n):
-        tema = rnd.randrange(K) if rnd.random() < epsilon else sorteia(pesos, rnd)
-        if limite and cont[tema] >= limite:
+        tema = math.floor(rnd() * K) if rnd() < epsilon else sorteia(pesos, rnd)
+        if limite is not None and cont[tema] >= limite:
             livres = [i for i in range(K) if cont[i] < limite]
             tema = livres[sorteia([pesos[i] for i in livres], rnd)]
         feed.append(tema)
@@ -69,8 +97,11 @@ def monta_feed(cliques, gama, epsilon, teto, n, rnd):
 
 
 def simula(p_clique, gama, epsilon, teto, rodadas, n, semente):
-    """Uma simulação. Devolve a diversidade por rodada, o engajamento e o tema dominante."""
-    rnd = random.Random(semente)
+    """Uma simulação. Devolve (diversidade por rodada, engajamento, contagem final por tema).
+
+    A contagem final soma os feeds das últimas 20 rodadas.
+    """
+    rnd = mulberry32(semente)
     cliques = [1] * K
     diversidade, finais = [], [0] * K
     cliques_total = posts = 0
@@ -82,17 +113,25 @@ def simula(p_clique, gama, epsilon, teto, rodadas, n, semente):
             finais = [a + b for a, b in zip(finais, cont)]
         for tema in feed:                       # o usuário reage ao que viu...
             posts += 1
-            if rnd.random() < p_clique[tema]:
+            if rnd() < p_clique[tema]:
                 cliques[tema] += 1              # ...e a reação vira dado de treino (feedback loop)
                 cliques_total += 1
-    return diversidade, cliques_total / posts, max(finais) / sum(finais)
+    return diversidade, cliques_total / posts, finais
 
 
-def media(p_clique, gama, epsilon, teto, rodadas, n, sementes):
-    resultados = [simula(p_clique, gama, epsilon, teto, rodadas, n, s) for s in range(sementes)]
-    div = [sum(r[0][i] for r in resultados) / sementes for i in range(rodadas)]
-    eng = sum(r[1] for r in resultados) / sementes
-    dom = sum(r[2] for r in resultados) / sementes
+def media(p_clique, gama, epsilon, teto, rodadas, n, sementes, semente_base=0):
+    """Média de várias simulações (sementes semente_base, semente_base+1, ...).
+
+    Devolve (diversidade média por rodada, engajamento médio, parcela média do tema dominante).
+    """
+    div = [0.0] * rodadas
+    eng = dom = 0.0
+    for s in range(sementes):
+        d, e, fim = simula(p_clique, gama, epsilon, teto, rodadas, n, semente_base + s)
+        for i, v in enumerate(d):
+            div[i] += v / sementes
+        eng += e / sementes
+        dom += max(fim) / sum(fim) / sementes
     return div, eng, dom
 
 

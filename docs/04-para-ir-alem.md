@@ -59,4 +59,6 @@ Na Mauá, estudantes desses cursos aprendem a trabalhar com tecnologias como as 
 
 ---
 
+Material de apoio: [resultados do resumo](05-resultados-do-resumo.md) e [referências](06-referencias.md).
+
 Voltar ao [índice](../README.md).
